@@ -36,7 +36,7 @@
   <span><a href="https://github.com/zmqmessage/zmqmessage/">Download</a></span>
 </td>
 
-<td align="right" class="zm_greynote">ZmqMessage 0.1 - 8 Sep 2011</td>
+<td align="right" class="zm_greynote">ZmqMessage 0.1 - 21 Oct 2011</td>
 
 </tr></table>
 
@@ -128,662 +128,692 @@
 <a name="l00123"></a>00123     <a class="code" href="classZmqMessage_1_1Multipart.html#9ea999dab5a6774779b96d0bd88682e6">check_has_part</a>(size_t n) <span class="keyword">const</span> <span class="keywordflow">throw</span>(<a class="code" href="classNoSuchPartError.html">NoSuchPartError</a>);
 <a name="l00124"></a>00124 
 <a name="l00125"></a>00125   <span class="keyword">private</span>:
-<a name="l00126"></a>00126     <span class="keywordtype">void</span>
-<a name="l00127"></a>00127     clear();
-<a name="l00128"></a>00128 
-<a name="l00129"></a><a class="code" href="classZmqMessage_1_1Multipart.html#e1fb83cbb4dd6bfe69a99ed773ac574f">00129</a>     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>;
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131     <span class="keyword">friend</span> <span class="keywordtype">void</span>
-<a name="l00132"></a>00132     <a class="code" href="classZmqMessage_1_1Multipart.html#1747710ed85129270b569b01cd5f2ac4">send</a>(zmq::socket_t&amp; sock, <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>&amp; multipart, <span class="keywordtype">bool</span> nonblock)
-<a name="l00133"></a>00133       <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00134"></a>00134 
-<a name="l00135"></a>00135   <span class="keyword">public</span>:
-<a name="l00139"></a>00139     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00140"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">00140</a>     <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>
-<a name="l00141"></a>00141     {
-<a name="l00142"></a>00142     <span class="keyword">public</span>:
-<a name="l00143"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#80b4dea325696fa98280979c4c57be75">00143</a>       <span class="keyword">typedef</span> T <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#80b4dea325696fa98280979c4c57be75">value_type</a>;
-<a name="l00144"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#f0d443893d2a1e7cc42db237fd82e1f7">00144</a>       <span class="keyword">typedef</span> T&amp; <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#f0d443893d2a1e7cc42db237fd82e1f7">reference</a>;
-<a name="l00145"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#26a4fe0ecb7bc3a45d400cb736c9b147">00145</a>       <span class="keyword">typedef</span> T* <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#26a4fe0ecb7bc3a45d400cb736c9b147">pointer</a>;
-<a name="l00146"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#09d24ca80e187adace9e1275956b0da9">00146</a>       <span class="keyword">typedef</span> std::ptrdiff_t <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#09d24ca80e187adace9e1275956b0da9">difference_type</a>;
-<a name="l00147"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#120bb7c18572a976507d15538e726b45">00147</a>       <span class="keyword">typedef</span> std::input_iterator_tag <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#120bb7c18572a976507d15538e726b45">iterator_category</a>;
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149     <span class="keyword">private</span>:
-<a name="l00150"></a>00150       <span class="keyword">explicit</span>
-<a name="l00151"></a>00151       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>(<span class="keyword">const</span> <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>&amp; messages, <span class="keywordtype">bool</span> binary_mode, <span class="keywordtype">bool</span> end = <span class="keyword">false</span>) :
-<a name="l00152"></a>00152           messages_(messages), idx_(end ? messages.<a class="code" href="classZmqMessage_1_1Multipart.html#3b4e16e2a44e55f6ce5bda8c5cafd28a">size</a>() : 0),
-<a name="l00153"></a>00153           binary_mode_(binary_mode)
-<a name="l00154"></a>00154       {
-<a name="l00155"></a>00155         set_cur();
-<a name="l00156"></a>00156       }
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>(<span class="keyword">const</span> <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>&amp; messages, size_t idx, <span class="keywordtype">bool</span> binary_mode) :
-<a name="l00159"></a>00159           messages_(messages), idx_(idx), binary_mode_(binary_mode)
-<a name="l00160"></a>00160       {
-<a name="l00161"></a>00161         set_cur();
-<a name="l00162"></a>00162       }
-<a name="l00163"></a>00163 
-<a name="l00164"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#c87fe303091ca51b3eb4e4943a6c7cac">00164</a>       <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>;
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166     <span class="keyword">public</span>:
-<a name="l00167"></a>00167       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>
-<a name="l00168"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#cfe99e6a8eb18c617c610da30f4dc8df">00168</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#cfe99e6a8eb18c617c610da30f4dc8df">operator++</a>()
-<a name="l00169"></a>00169       {
-<a name="l00170"></a>00170         ++idx_;
-<a name="l00171"></a>00171         set_cur();
-<a name="l00172"></a>00172         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00173"></a>00173       }
-<a name="l00174"></a>00174 
-<a name="l00175"></a>00175       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>
-<a name="l00176"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#2e4b9a909a35d76d355d9fdb747bbe08">00176</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#cfe99e6a8eb18c617c610da30f4dc8df">operator++</a>(<span class="keywordtype">int</span>)
-<a name="l00177"></a>00177       {
-<a name="l00178"></a>00178         <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a> ret_val(*<span class="keyword">this</span>);
-<a name="l00179"></a>00179         ++(*this);
-<a name="l00180"></a>00180         <span class="keywordflow">return</span> ret_val;
-<a name="l00181"></a>00181       }
-<a name="l00182"></a>00182 
-<a name="l00183"></a>00183       <span class="keyword">const</span> T
-<a name="l00184"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#9379611997b0b5851ce6bbc8e7474cc2">00184</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#9379611997b0b5851ce6bbc8e7474cc2">operator*</a>()
-<a name="l00185"></a>00185       {
-<a name="l00186"></a>00186         <span class="keywordflow">return</span> cur_;
-<a name="l00187"></a>00187       }
-<a name="l00188"></a>00188 
-<a name="l00189"></a>00189       <span class="keywordtype">bool</span>
-<a name="l00190"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#ea5c1e6eabc3d0102de0b92a5d8a3fa3">00190</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#ea5c1e6eabc3d0102de0b92a5d8a3fa3">operator==</a>(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)
-<a name="l00191"></a>00191       {
-<a name="l00192"></a>00192         <span class="keywordflow">return</span> equal(rhs);
-<a name="l00193"></a>00193       }
-<a name="l00194"></a>00194 
-<a name="l00195"></a>00195       <span class="keywordtype">bool</span>
-<a name="l00196"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#38a6da006d4a94fd993c3bdf591645f5">00196</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#38a6da006d4a94fd993c3bdf591645f5">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)
-<a name="l00197"></a>00197       {
-<a name="l00198"></a>00198         <span class="keywordflow">return</span> !equal(rhs);
-<a name="l00199"></a>00199       }
-<a name="l00200"></a>00200 
-<a name="l00201"></a>00201     <span class="keyword">private</span>:
-<a name="l00202"></a>00202       <span class="keyword">const</span> <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>&amp; messages_;
-<a name="l00203"></a>00203       size_t idx_;
-<a name="l00204"></a>00204       T cur_;
-<a name="l00205"></a>00205       <span class="keyword">const</span> <span class="keywordtype">bool</span> binary_mode_;
-<a name="l00206"></a>00206 
-<a name="l00207"></a>00207       <span class="keyword">inline</span>
-<a name="l00208"></a>00208       <span class="keywordtype">bool</span>
-<a name="l00209"></a>00209       end()<span class="keyword"> const</span>
-<a name="l00210"></a>00210 <span class="keyword">      </span>{
-<a name="l00211"></a>00211         <span class="keywordflow">return</span> idx_ &gt;= messages_.size();
-<a name="l00212"></a>00212       }
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214       <span class="keywordtype">bool</span>
-<a name="l00215"></a>00215       equal(<span class="keyword">const</span> iterator&lt;T&gt;&amp; rhs)<span class="keyword"> const</span>
-<a name="l00216"></a>00216 <span class="keyword">      </span>{
-<a name="l00217"></a>00217         <span class="keywordflow">return</span> end() &amp;&amp; rhs.end();
-<a name="l00218"></a>00218       }
-<a name="l00219"></a>00219 
-<a name="l00220"></a>00220       <span class="keywordtype">void</span>
-<a name="l00221"></a>00221       set_cur();
-<a name="l00222"></a>00222     };
-<a name="l00223"></a>00223   <span class="keyword">public</span>:
-<a name="l00224"></a><a class="code" href="classZmqMessage_1_1Multipart.html#6165f98155ecea6ef169291a4a04c229">00224</a>     <span class="keyword">virtual</span> <a class="code" href="classZmqMessage_1_1Multipart.html#6165f98155ecea6ef169291a4a04c229">~Multipart</a>()
-<a name="l00225"></a>00225     {
-<a name="l00226"></a>00226       clear();
-<a name="l00227"></a>00227     }
-<a name="l00228"></a>00228 
-<a name="l00232"></a>00232     <span class="keyword">inline</span>
-<a name="l00233"></a>00233     <span class="keywordtype">void</span>
-<a name="l00234"></a><a class="code" href="classZmqMessage_1_1Multipart.html#ff768d14acbd77e439fa6bb57aa4793d">00234</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#ff768d14acbd77e439fa6bb57aa4793d">reserve</a>(size_t sz)
-<a name="l00235"></a>00235     {
-<a name="l00236"></a>00236       <a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>.reserve(sz);
-<a name="l00237"></a>00237     }
-<a name="l00238"></a>00238 
-<a name="l00249"></a>00249     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00250"></a>00250     <span class="keyword">inline</span>
-<a name="l00251"></a>00251     iterator&lt;T&gt;
-<a name="l00252"></a><a class="code" href="classZmqMessage_1_1Multipart.html#9032f31db69130a086c696690ca99ff6">00252</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#9032f31db69130a086c696690ca99ff6">begin</a>(<span class="keywordtype">bool</span> binary_mode = <span class="keyword">false</span>)<span class="keyword"> const</span>
-<a name="l00253"></a>00253 <span class="keyword">    </span>{
-<a name="l00254"></a>00254       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>(<a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>, binary_mode);
-<a name="l00255"></a>00255     }
-<a name="l00256"></a>00256 
-<a name="l00260"></a>00260     <span class="keyword">inline</span>
-<a name="l00261"></a>00261     iterator&lt;ZMQMESSAGE_STRING_CLASS&gt;
-<a name="l00262"></a><a class="code" href="classZmqMessage_1_1Multipart.html#a42ff3e53b8f5977af8d8d630aaf0e2e">00262</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#a42ff3e53b8f5977af8d8d630aaf0e2e">beginstr</a>()<span class="keyword"> const</span>
-<a name="l00263"></a>00263 <span class="keyword">    </span>{
-<a name="l00264"></a>00264       <span class="keywordflow">return</span> begin&lt;ZMQMESSAGE_STRING_CLASS&gt;();
-<a name="l00265"></a>00265     }
-<a name="l00266"></a>00266 
-<a name="l00274"></a>00274     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00275"></a>00275     <span class="keyword">inline</span>
-<a name="l00276"></a>00276     iterator&lt;T&gt;
-<a name="l00277"></a><a class="code" href="classZmqMessage_1_1Multipart.html#7ce203e1e2b7df62d16f39a2ea75cfc0">00277</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#7ce203e1e2b7df62d16f39a2ea75cfc0">iter_at</a>(size_t pos, <span class="keywordtype">bool</span> binary_mode = <span class="keyword">false</span>)<span class="keyword"> const</span>
-<a name="l00278"></a>00278 <span class="keyword">    </span>{
-<a name="l00279"></a>00279       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>(<a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>, pos, binary_mode);
-<a name="l00280"></a>00280     }
-<a name="l00281"></a>00281 
-<a name="l00285"></a>00285     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00286"></a>00286     <span class="keyword">inline</span>
-<a name="l00287"></a>00287     iterator&lt;T&gt;
-<a name="l00288"></a><a class="code" href="classZmqMessage_1_1Multipart.html#e887aae273f8a8df328aad4c3e088de8">00288</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#e887aae273f8a8df328aad4c3e088de8">end</a>()<span class="keyword"> const</span>
-<a name="l00289"></a>00289 <span class="keyword">    </span>{
-<a name="l00290"></a>00290       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>(<a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>, <span class="keyword">false</span>, <span class="keyword">true</span>);
-<a name="l00291"></a>00291     }
-<a name="l00292"></a>00292 
-<a name="l00296"></a>00296     <span class="keyword">inline</span>
-<a name="l00297"></a>00297     iterator&lt;ZMQMESSAGE_STRING_CLASS&gt;
-<a name="l00298"></a><a class="code" href="classZmqMessage_1_1Multipart.html#3d4cb15df52541c7296911440e9eedc1">00298</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#3d4cb15df52541c7296911440e9eedc1">endstr</a>()<span class="keyword"> const</span>
-<a name="l00299"></a>00299 <span class="keyword">    </span>{
-<a name="l00300"></a>00300       <span class="keywordflow">return</span> end&lt;ZMQMESSAGE_STRING_CLASS&gt;();
-<a name="l00301"></a>00301     }
-<a name="l00302"></a>00302 
-<a name="l00306"></a>00306     <span class="keyword">inline</span>
-<a name="l00307"></a>00307     size_t
-<a name="l00308"></a><a class="code" href="classZmqMessage_1_1Multipart.html#3b4e16e2a44e55f6ce5bda8c5cafd28a">00308</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#3b4e16e2a44e55f6ce5bda8c5cafd28a">size</a>()<span class="keyword"> const</span>
-<a name="l00309"></a>00309 <span class="keyword">    </span>{
-<a name="l00310"></a>00310       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>.size();
-<a name="l00311"></a>00311     }
-<a name="l00312"></a>00312 
-<a name="l00316"></a>00316     zmq::message_t&amp;
-<a name="l00317"></a>00317     <a class="code" href="classZmqMessage_1_1Multipart.html#1c5df372e12916cba40435828b49c00f">operator[]</a>(size_t i) <span class="keywordflow">throw</span> (<a class="code" href="classNoSuchPartError.html">NoSuchPartError</a>);
-<a name="l00318"></a>00318 
-<a name="l00323"></a>00323     zmq::message_t*
-<a name="l00324"></a>00324     <a class="code" href="classZmqMessage_1_1Multipart.html#c8602b5af22555eff42cb8324436bcbc">release</a>(size_t i);
-<a name="l00325"></a>00325 
-<a name="l00326"></a>00326   };
-<a name="l00327"></a>00327 
-<a name="l00334"></a>00334   Sink&amp;
-<a name="l00335"></a>00335   <a class="code" href="namespaceZmqMessage.html#df46ab94fba5556895905631c275502b">NullMessage</a>(Sink&amp; out);
-<a name="l00336"></a>00336 
-<a name="l00344"></a>00344   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> RoutingPolicy&gt;
-<a name="l00345"></a>00345   Incoming&lt;RoutingPolicy&gt;&amp;
-<a name="l00346"></a><a class="code" href="namespaceZmqMessage.html#d8492b4bc52a3bb1d316e67ba790a354">00346</a>   <a class="code" href="namespaceZmqMessage.html#d8492b4bc52a3bb1d316e67ba790a354">Skip</a>(<a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;RoutingPolicy&gt;</a>&amp; in)
-<a name="l00347"></a>00347   {
-<a name="l00348"></a>00348     in.<a class="code" href="classZmqMessage_1_1Multipart.html#9ea999dab5a6774779b96d0bd88682e6">check_has_part</a>(in.<a class="code" href="classZmqMessage_1_1Incoming.html#3f8ab10d10b4d723418ba5495ddeefd2">cur_extract_idx_</a>);
-<a name="l00349"></a>00349     ++in.<a class="code" href="classZmqMessage_1_1Incoming.html#3f8ab10d10b4d723418ba5495ddeefd2">cur_extract_idx_</a>;
-<a name="l00350"></a>00350     <span class="keywordflow">return</span> in;
-<a name="l00351"></a>00351   }
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127     <span class="keywordtype">void</span>
+<a name="l00128"></a>00128     clear();
+<a name="l00129"></a>00129 
+<a name="l00130"></a><a class="code" href="classZmqMessage_1_1Multipart.html#e1fb83cbb4dd6bfe69a99ed773ac574f">00130</a>     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>;
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132     <span class="keyword">friend</span> <span class="keywordtype">void</span>
+<a name="l00133"></a>00133     <a class="code" href="classZmqMessage_1_1Multipart.html#1747710ed85129270b569b01cd5f2ac4">send</a>(zmq::socket_t&amp; sock, <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>&amp; multipart, <span class="keywordtype">bool</span> nonblock)
+<a name="l00134"></a>00134       <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136   <span class="keyword">public</span>:
+<a name="l00140"></a>00140     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00141"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">00141</a>     <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>
+<a name="l00142"></a>00142     {
+<a name="l00143"></a>00143     <span class="keyword">public</span>:
+<a name="l00144"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#80b4dea325696fa98280979c4c57be75">00144</a>       <span class="keyword">typedef</span> T <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#80b4dea325696fa98280979c4c57be75">value_type</a>;
+<a name="l00145"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#f0d443893d2a1e7cc42db237fd82e1f7">00145</a>       <span class="keyword">typedef</span> T&amp; <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#f0d443893d2a1e7cc42db237fd82e1f7">reference</a>;
+<a name="l00146"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#26a4fe0ecb7bc3a45d400cb736c9b147">00146</a>       <span class="keyword">typedef</span> T* <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#26a4fe0ecb7bc3a45d400cb736c9b147">pointer</a>;
+<a name="l00147"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#09d24ca80e187adace9e1275956b0da9">00147</a>       <span class="keyword">typedef</span> std::ptrdiff_t <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#09d24ca80e187adace9e1275956b0da9">difference_type</a>;
+<a name="l00148"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#120bb7c18572a976507d15538e726b45">00148</a>       <span class="keyword">typedef</span> std::input_iterator_tag <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#120bb7c18572a976507d15538e726b45">iterator_category</a>;
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150     <span class="keyword">private</span>:
+<a name="l00151"></a>00151       <span class="keyword">explicit</span>
+<a name="l00152"></a>00152       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>(<span class="keyword">const</span> <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>&amp; messages, <span class="keywordtype">bool</span> binary_mode, <span class="keywordtype">bool</span> end = <span class="keyword">false</span>) :
+<a name="l00153"></a>00153           messages_(messages), idx_(end ? messages.<a class="code" href="classZmqMessage_1_1Multipart.html#3b4e16e2a44e55f6ce5bda8c5cafd28a">size</a>() : 0),
+<a name="l00154"></a>00154           binary_mode_(binary_mode)
+<a name="l00155"></a>00155       {
+<a name="l00156"></a>00156         set_cur();
+<a name="l00157"></a>00157       }
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>(<span class="keyword">const</span> <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>&amp; messages, size_t idx, <span class="keywordtype">bool</span> binary_mode) :
+<a name="l00160"></a>00160           messages_(messages), idx_(idx), binary_mode_(binary_mode)
+<a name="l00161"></a>00161       {
+<a name="l00162"></a>00162         set_cur();
+<a name="l00163"></a>00163       }
+<a name="l00164"></a>00164 
+<a name="l00165"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#c87fe303091ca51b3eb4e4943a6c7cac">00165</a>       <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>;
+<a name="l00166"></a>00166 
+<a name="l00167"></a>00167     <span class="keyword">public</span>:
+<a name="l00168"></a>00168       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>
+<a name="l00169"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#cfe99e6a8eb18c617c610da30f4dc8df">00169</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#cfe99e6a8eb18c617c610da30f4dc8df">operator++</a>()
+<a name="l00170"></a>00170       {
+<a name="l00171"></a>00171         ++idx_;
+<a name="l00172"></a>00172         set_cur();
+<a name="l00173"></a>00173         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00174"></a>00174       }
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator</a>
+<a name="l00177"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#2e4b9a909a35d76d355d9fdb747bbe08">00177</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#cfe99e6a8eb18c617c610da30f4dc8df">operator++</a>(<span class="keywordtype">int</span>)
+<a name="l00178"></a>00178       {
+<a name="l00179"></a>00179         <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a> ret_val(*<span class="keyword">this</span>);
+<a name="l00180"></a>00180         ++(*this);
+<a name="l00181"></a>00181         <span class="keywordflow">return</span> ret_val;
+<a name="l00182"></a>00182       }
+<a name="l00183"></a>00183 
+<a name="l00184"></a>00184       <span class="keyword">const</span> T
+<a name="l00185"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#9379611997b0b5851ce6bbc8e7474cc2">00185</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#9379611997b0b5851ce6bbc8e7474cc2">operator*</a>()
+<a name="l00186"></a>00186       {
+<a name="l00187"></a>00187         <span class="keywordflow">return</span> cur_;
+<a name="l00188"></a>00188       }
+<a name="l00189"></a>00189 
+<a name="l00190"></a>00190       <span class="keywordtype">bool</span>
+<a name="l00191"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#ea5c1e6eabc3d0102de0b92a5d8a3fa3">00191</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#ea5c1e6eabc3d0102de0b92a5d8a3fa3">operator==</a>(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)
+<a name="l00192"></a>00192       {
+<a name="l00193"></a>00193         <span class="keywordflow">return</span> equal(rhs);
+<a name="l00194"></a>00194       }
+<a name="l00195"></a>00195 
+<a name="l00196"></a>00196       <span class="keywordtype">bool</span>
+<a name="l00197"></a><a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#38a6da006d4a94fd993c3bdf591645f5">00197</a>       <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html#38a6da006d4a94fd993c3bdf591645f5">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)
+<a name="l00198"></a>00198       {
+<a name="l00199"></a>00199         <span class="keywordflow">return</span> !equal(rhs);
+<a name="l00200"></a>00200       }
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202     <span class="keyword">private</span>:
+<a name="l00203"></a>00203       <span class="keyword">const</span> <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>&amp; messages_;
+<a name="l00204"></a>00204       size_t idx_;
+<a name="l00205"></a>00205       T cur_;
+<a name="l00206"></a>00206       <span class="keyword">const</span> <span class="keywordtype">bool</span> binary_mode_;
+<a name="l00207"></a>00207 
+<a name="l00208"></a>00208       <span class="keyword">inline</span>
+<a name="l00209"></a>00209       <span class="keywordtype">bool</span>
+<a name="l00210"></a>00210       end()<span class="keyword"> const</span>
+<a name="l00211"></a>00211 <span class="keyword">      </span>{
+<a name="l00212"></a>00212         <span class="keywordflow">return</span> idx_ &gt;= messages_.size();
+<a name="l00213"></a>00213       }
+<a name="l00214"></a>00214 
+<a name="l00215"></a>00215       <span class="keywordtype">bool</span>
+<a name="l00216"></a>00216       equal(<span class="keyword">const</span> iterator&lt;T&gt;&amp; rhs)<span class="keyword"> const</span>
+<a name="l00217"></a>00217 <span class="keyword">      </span>{
+<a name="l00218"></a>00218         <span class="keywordflow">return</span> end() &amp;&amp; rhs.end();
+<a name="l00219"></a>00219       }
+<a name="l00220"></a>00220 
+<a name="l00221"></a>00221       <span class="keywordtype">void</span>
+<a name="l00222"></a>00222       set_cur();
+<a name="l00223"></a>00223     };
+<a name="l00224"></a>00224   <span class="keyword">public</span>:
+<a name="l00225"></a><a class="code" href="classZmqMessage_1_1Multipart.html#6165f98155ecea6ef169291a4a04c229">00225</a>     <span class="keyword">virtual</span> <a class="code" href="classZmqMessage_1_1Multipart.html#6165f98155ecea6ef169291a4a04c229">~Multipart</a>()
+<a name="l00226"></a>00226     {
+<a name="l00227"></a>00227       clear();
+<a name="l00228"></a>00228     }
+<a name="l00229"></a>00229 
+<a name="l00235"></a>00235     <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>*
+<a name="l00236"></a>00236     <a class="code" href="classZmqMessage_1_1Multipart.html#3aec624a2a775f1e7245cf17707b4fdf">detach</a>();
+<a name="l00237"></a>00237 
+<a name="l00241"></a>00241     <span class="keyword">inline</span>
+<a name="l00242"></a>00242     <span class="keywordtype">bool</span>
+<a name="l00243"></a><a class="code" href="classZmqMessage_1_1Multipart.html#abc7b26e36a933441d0bc6115b8d9c57">00243</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#abc7b26e36a933441d0bc6115b8d9c57">has_part</a>(size_t idx)
+<a name="l00244"></a>00244     {
+<a name="l00245"></a>00245       <span class="keywordflow">return</span> (<a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>.size() &gt; idx &amp;&amp; <a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>[idx] != 0);
+<a name="l00246"></a>00246     }
+<a name="l00247"></a>00247 
+<a name="l00251"></a>00251     <span class="keyword">inline</span>
+<a name="l00252"></a>00252     <span class="keywordtype">void</span>
+<a name="l00253"></a><a class="code" href="classZmqMessage_1_1Multipart.html#ff768d14acbd77e439fa6bb57aa4793d">00253</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#ff768d14acbd77e439fa6bb57aa4793d">reserve</a>(size_t sz)
+<a name="l00254"></a>00254     {
+<a name="l00255"></a>00255       <a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>.reserve(sz);
+<a name="l00256"></a>00256     }
+<a name="l00257"></a>00257 
+<a name="l00268"></a>00268     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00269"></a>00269     <span class="keyword">inline</span>
+<a name="l00270"></a>00270     iterator&lt;T&gt;
+<a name="l00271"></a><a class="code" href="classZmqMessage_1_1Multipart.html#9032f31db69130a086c696690ca99ff6">00271</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#9032f31db69130a086c696690ca99ff6">begin</a>(<span class="keywordtype">bool</span> binary_mode = <span class="keyword">false</span>)<span class="keyword"> const</span>
+<a name="l00272"></a>00272 <span class="keyword">    </span>{
+<a name="l00273"></a>00273       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>(<a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>, binary_mode);
+<a name="l00274"></a>00274     }
+<a name="l00275"></a>00275 
+<a name="l00279"></a>00279     <span class="keyword">inline</span>
+<a name="l00280"></a>00280     iterator&lt;ZMQMESSAGE_STRING_CLASS&gt;
+<a name="l00281"></a><a class="code" href="classZmqMessage_1_1Multipart.html#a42ff3e53b8f5977af8d8d630aaf0e2e">00281</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#a42ff3e53b8f5977af8d8d630aaf0e2e">beginstr</a>()<span class="keyword"> const</span>
+<a name="l00282"></a>00282 <span class="keyword">    </span>{
+<a name="l00283"></a>00283       <span class="keywordflow">return</span> begin&lt;ZMQMESSAGE_STRING_CLASS&gt;();
+<a name="l00284"></a>00284     }
+<a name="l00285"></a>00285 
+<a name="l00293"></a>00293     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00294"></a>00294     <span class="keyword">inline</span>
+<a name="l00295"></a>00295     iterator&lt;T&gt;
+<a name="l00296"></a><a class="code" href="classZmqMessage_1_1Multipart.html#7ce203e1e2b7df62d16f39a2ea75cfc0">00296</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#7ce203e1e2b7df62d16f39a2ea75cfc0">iter_at</a>(size_t pos, <span class="keywordtype">bool</span> binary_mode = <span class="keyword">false</span>)<span class="keyword"> const</span>
+<a name="l00297"></a>00297 <span class="keyword">    </span>{
+<a name="l00298"></a>00298       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>(<a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>, pos, binary_mode);
+<a name="l00299"></a>00299     }
+<a name="l00300"></a>00300 
+<a name="l00304"></a>00304     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00305"></a>00305     <span class="keyword">inline</span>
+<a name="l00306"></a>00306     iterator&lt;T&gt;
+<a name="l00307"></a><a class="code" href="classZmqMessage_1_1Multipart.html#e887aae273f8a8df328aad4c3e088de8">00307</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#e887aae273f8a8df328aad4c3e088de8">end</a>()<span class="keyword"> const</span>
+<a name="l00308"></a>00308 <span class="keyword">    </span>{
+<a name="l00309"></a>00309       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Multipart_1_1iterator.html">iterator&lt;T&gt;</a>(<a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>, <span class="keyword">false</span>, <span class="keyword">true</span>);
+<a name="l00310"></a>00310     }
+<a name="l00311"></a>00311 
+<a name="l00315"></a>00315     <span class="keyword">inline</span>
+<a name="l00316"></a>00316     iterator&lt;ZMQMESSAGE_STRING_CLASS&gt;
+<a name="l00317"></a><a class="code" href="classZmqMessage_1_1Multipart.html#3d4cb15df52541c7296911440e9eedc1">00317</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#3d4cb15df52541c7296911440e9eedc1">endstr</a>()<span class="keyword"> const</span>
+<a name="l00318"></a>00318 <span class="keyword">    </span>{
+<a name="l00319"></a>00319       <span class="keywordflow">return</span> end&lt;ZMQMESSAGE_STRING_CLASS&gt;();
+<a name="l00320"></a>00320     }
+<a name="l00321"></a>00321 
+<a name="l00325"></a>00325     <span class="keyword">inline</span>
+<a name="l00326"></a>00326     size_t
+<a name="l00327"></a><a class="code" href="classZmqMessage_1_1Multipart.html#3b4e16e2a44e55f6ce5bda8c5cafd28a">00327</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#3b4e16e2a44e55f6ce5bda8c5cafd28a">size</a>()<span class="keyword"> const</span>
+<a name="l00328"></a>00328 <span class="keyword">    </span>{
+<a name="l00329"></a>00329       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Multipart.html#90459cebd60b1eaf2ca82f581967c7d3">parts_</a>.size();
+<a name="l00330"></a>00330     }
+<a name="l00331"></a>00331 
+<a name="l00335"></a>00335     zmq::message_t&amp;
+<a name="l00336"></a>00336     <a class="code" href="classZmqMessage_1_1Multipart.html#1c5df372e12916cba40435828b49c00f">operator[]</a>(size_t i) <span class="keywordflow">throw</span> (<a class="code" href="classNoSuchPartError.html">NoSuchPartError</a>);
+<a name="l00337"></a>00337 
+<a name="l00342"></a>00342     zmq::message_t*
+<a name="l00343"></a>00343     <a class="code" href="classZmqMessage_1_1Multipart.html#c8602b5af22555eff42cb8324436bcbc">release</a>(size_t i);
+<a name="l00344"></a>00344 
+<a name="l00345"></a>00345     <span class="keyword">inline</span>
+<a name="l00346"></a>00346     std::auto_ptr&lt;zmq::message_t&gt;
+<a name="l00347"></a><a class="code" href="classZmqMessage_1_1Multipart.html#184658613bd352af7ca57b0554a32609">00347</a>     <a class="code" href="classZmqMessage_1_1Multipart.html#184658613bd352af7ca57b0554a32609">release_ptr</a>(size_t i)
+<a name="l00348"></a>00348     {
+<a name="l00349"></a>00349       <span class="keywordflow">return</span> std::auto_ptr&lt;zmq::message_t&gt;(<a class="code" href="classZmqMessage_1_1Multipart.html#c8602b5af22555eff42cb8324436bcbc">release</a>(i));
+<a name="l00350"></a>00350     }
+<a name="l00351"></a>00351   };
 <a name="l00352"></a>00352 
-<a name="l00358"></a>00358   Sink&amp;
-<a name="l00359"></a>00359   <a class="code" href="namespaceZmqMessage.html#d91dfdcb44a38c67cb7c8acbf4096a53">Flush</a>(Sink&amp; out);
-<a name="l00360"></a>00360 
-<a name="l00367"></a>00367   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> StreamAlike&gt;
-<a name="l00368"></a>00368   StreamAlike&amp;
-<a name="l00369"></a><a class="code" href="namespaceZmqMessage.html#8b7a75f7f251ba1e0da8b4c7c26b627f">00369</a>   <a class="code" href="namespaceZmqMessage.html#8b7a75f7f251ba1e0da8b4c7c26b627f">Binary</a>(StreamAlike&amp; out)
-<a name="l00370"></a>00370   {
-<a name="l00371"></a>00371     out.set_binary();
-<a name="l00372"></a>00372     <span class="keywordflow">return</span> out;
-<a name="l00373"></a>00373   }
-<a name="l00374"></a>00374 
-<a name="l00381"></a>00381   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> StreamAlike&gt;
-<a name="l00382"></a>00382   StreamAlike&amp;
-<a name="l00383"></a><a class="code" href="namespaceZmqMessage.html#60e56a3c40f23f5f62705e2c3a15d6a4">00383</a>   <a class="code" href="namespaceZmqMessage.html#60e56a3c40f23f5f62705e2c3a15d6a4">Text</a>(StreamAlike&amp; out)
-<a name="l00384"></a>00384   {
-<a name="l00385"></a>00385     out.set_text();
-<a name="l00386"></a>00386     <span class="keywordflow">return</span> out;
-<a name="l00387"></a>00387   }
-<a name="l00388"></a>00388 
-<a name="l00395"></a>00395   <span class="keyword">template</span> &lt;<span class="keyword">class</span> RoutingPolicy&gt;
-<a name="l00396"></a><a class="code" href="classZmqMessage_1_1Incoming.html">00396</a>   <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a> :
-<a name="l00397"></a>00397     <span class="keyword">public</span> <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>, <span class="keyword">private</span> RoutingPolicy
-<a name="l00398"></a>00398   {
-<a name="l00399"></a>00399   <span class="keyword">private</span>:
-<a name="l00400"></a>00400 
-<a name="l00401"></a>00401     zmq::socket_t&amp; src_; 
-<a name="l00402"></a>00402     <span class="keywordtype">bool</span> is_terminal_; 
-<a name="l00403"></a>00403     size_t cur_extract_idx_;
-<a name="l00404"></a>00404     <span class="keywordtype">bool</span> binary_mode_; 
-<a name="l00405"></a>00405 
-<a name="l00406"></a>00406     <span class="keywordtype">void</span>
-<a name="l00407"></a>00407     append_message_data(
-<a name="l00408"></a>00408       zmq::message_t&amp; message, std::vector&lt;char&gt;&amp; area) <span class="keyword">const</span>;
-<a name="l00409"></a>00409 
-<a name="l00414"></a>00414     <span class="keywordtype">bool</span>
-<a name="l00415"></a>00415     receive_one() <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00416"></a>00416 
-<a name="l00417"></a>00417     <span class="keyword">template</span> &lt;<span class="keyword">class</span> OutRoutingPolicy&gt;
-<a name="l00418"></a><a class="code" href="classZmqMessage_1_1Incoming.html#a07ed4ec0770ac32318ba3231a93a8d5">00418</a>     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Outgoing.html">Outgoing</a>;
-<a name="l00419"></a>00419 
-<a name="l00420"></a>00420     <span class="keyword">inline</span>
-<a name="l00421"></a>00421     <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>*
-<a name="l00422"></a>00422     get_routing()
-<a name="l00423"></a>00423     {
-<a name="l00424"></a>00424       <span class="keywordflow">return</span> RoutingPolicy::get_routing();
-<a name="l00425"></a>00425     }
-<a name="l00426"></a>00426 
-<a name="l00427"></a>00427     <span class="keyword">friend</span>
-<a name="l00428"></a>00428     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;RoutingPolicy&gt;</a>&amp;
-<a name="l00429"></a>00429     Skip&lt;RoutingPolicy&gt;(<a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;RoutingPolicy&gt;</a>&amp;);
+<a name="l00359"></a>00359   Sink&amp;
+<a name="l00360"></a>00360   <a class="code" href="namespaceZmqMessage.html#df46ab94fba5556895905631c275502b">NullMessage</a>(Sink&amp; out);
+<a name="l00361"></a>00361 
+<a name="l00369"></a>00369   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> RoutingPolicy&gt;
+<a name="l00370"></a>00370   Incoming&lt;RoutingPolicy&gt;&amp;
+<a name="l00371"></a><a class="code" href="namespaceZmqMessage.html#d8492b4bc52a3bb1d316e67ba790a354">00371</a>   <a class="code" href="namespaceZmqMessage.html#d8492b4bc52a3bb1d316e67ba790a354">Skip</a>(<a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;RoutingPolicy&gt;</a>&amp; in)
+<a name="l00372"></a>00372   {
+<a name="l00373"></a>00373     in.<a class="code" href="classZmqMessage_1_1Multipart.html#9ea999dab5a6774779b96d0bd88682e6">check_has_part</a>(in.<a class="code" href="classZmqMessage_1_1Incoming.html#3f8ab10d10b4d723418ba5495ddeefd2">cur_extract_idx_</a>);
+<a name="l00374"></a>00374     ++in.<a class="code" href="classZmqMessage_1_1Incoming.html#3f8ab10d10b4d723418ba5495ddeefd2">cur_extract_idx_</a>;
+<a name="l00375"></a>00375     <span class="keywordflow">return</span> in;
+<a name="l00376"></a>00376   }
+<a name="l00377"></a>00377 
+<a name="l00383"></a>00383   Sink&amp;
+<a name="l00384"></a>00384   <a class="code" href="namespaceZmqMessage.html#d91dfdcb44a38c67cb7c8acbf4096a53">Flush</a>(Sink&amp; out);
+<a name="l00385"></a>00385 
+<a name="l00392"></a>00392   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> StreamAlike&gt;
+<a name="l00393"></a>00393   StreamAlike&amp;
+<a name="l00394"></a><a class="code" href="namespaceZmqMessage.html#8b7a75f7f251ba1e0da8b4c7c26b627f">00394</a>   <a class="code" href="namespaceZmqMessage.html#8b7a75f7f251ba1e0da8b4c7c26b627f">Binary</a>(StreamAlike&amp; out)
+<a name="l00395"></a>00395   {
+<a name="l00396"></a>00396     out.set_binary();
+<a name="l00397"></a>00397     <span class="keywordflow">return</span> out;
+<a name="l00398"></a>00398   }
+<a name="l00399"></a>00399 
+<a name="l00406"></a>00406   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> StreamAlike&gt;
+<a name="l00407"></a>00407   StreamAlike&amp;
+<a name="l00408"></a><a class="code" href="namespaceZmqMessage.html#60e56a3c40f23f5f62705e2c3a15d6a4">00408</a>   <a class="code" href="namespaceZmqMessage.html#60e56a3c40f23f5f62705e2c3a15d6a4">Text</a>(StreamAlike&amp; out)
+<a name="l00409"></a>00409   {
+<a name="l00410"></a>00410     out.set_text();
+<a name="l00411"></a>00411     <span class="keywordflow">return</span> out;
+<a name="l00412"></a>00412   }
+<a name="l00413"></a>00413 
+<a name="l00420"></a>00420   <span class="keyword">template</span> &lt;<span class="keyword">class</span> RoutingPolicy&gt;
+<a name="l00421"></a><a class="code" href="classZmqMessage_1_1Incoming.html">00421</a>   <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a> :
+<a name="l00422"></a>00422     <span class="keyword">public</span> <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>, <span class="keyword">private</span> RoutingPolicy
+<a name="l00423"></a>00423   {
+<a name="l00424"></a>00424   <span class="keyword">private</span>:
+<a name="l00425"></a>00425 
+<a name="l00426"></a>00426     zmq::socket_t&amp; src_; 
+<a name="l00427"></a>00427     <span class="keywordtype">bool</span> is_terminal_; 
+<a name="l00428"></a>00428     size_t cur_extract_idx_;
+<a name="l00429"></a>00429     <span class="keywordtype">bool</span> binary_mode_; 
 <a name="l00430"></a>00430 
-<a name="l00431"></a>00431   <span class="keyword">public</span>:
-<a name="l00432"></a><a class="code" href="classZmqMessage_1_1Incoming.html#a7597114723906810953da34dcaec200">00432</a>     <span class="keyword">typedef</span> RoutingPolicy <a class="code" href="classZmqMessage_1_1Incoming.html#a7597114723906810953da34dcaec200">RoutingPolicyType</a>;
-<a name="l00433"></a>00433 
-<a name="l00434"></a><a class="code" href="classZmqMessage_1_1Incoming.html#8e91e1bc1aaeb5748139ddd54089805d">00434</a>     <span class="keyword">explicit</span> <a class="code" href="classZmqMessage_1_1Incoming.html#8e91e1bc1aaeb5748139ddd54089805d">Incoming</a>(zmq::socket_t&amp; sock)
-<a name="l00435"></a>00435         : src_(sock), is_terminal_(false),
-<a name="l00436"></a>00436           cur_extract_idx_(0), binary_mode_(false)
-<a name="l00437"></a>00437     {
-<a name="l00438"></a>00438     }
-<a name="l00439"></a>00439 
-<a name="l00443"></a>00443     <span class="keyword">inline</span>
-<a name="l00444"></a>00444     zmq::socket_t&amp;
-<a name="l00445"></a><a class="code" href="classZmqMessage_1_1Incoming.html#3a599de5a85d9d0e91a6dabf25b7ff3f">00445</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#3a599de5a85d9d0e91a6dabf25b7ff3f">src</a>()
-<a name="l00446"></a>00446     {
-<a name="l00447"></a>00447       <span class="keywordflow">return</span> src_;
-<a name="l00448"></a>00448     }
-<a name="l00449"></a>00449 
-<a name="l00454"></a>00454     <span class="keyword">inline</span>
-<a name="l00455"></a>00455     <span class="keywordtype">bool</span>
-<a name="l00456"></a><a class="code" href="classZmqMessage_1_1Incoming.html#a9249b5947628fa758209f61c00b4e02">00456</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#a9249b5947628fa758209f61c00b4e02">is_terminal</a>()<span class="keyword"> const</span>
-<a name="l00457"></a>00457 <span class="keyword">    </span>{
-<a name="l00458"></a>00458       <span class="keywordflow">return</span> is_terminal_;
-<a name="l00459"></a>00459     }
-<a name="l00460"></a>00460 
-<a name="l00465"></a>00465     <span class="keywordtype">void</span>
-<a name="l00466"></a>00466     <a class="code" href="classZmqMessage_1_1Incoming.html#b359d2fec5e4756b68a274567948b0ee">check_is_terminal</a>() const throw(<a class="code" href="classMessageFormatError.html">MessageFormatError</a>);
-<a name="l00467"></a>00467 
-<a name="l00477"></a>00477     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a> &lt;RoutingPolicy&gt;&amp;
-<a name="l00478"></a>00478     <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(
-<a name="l00479"></a>00479       size_t parts, const <span class="keywordtype">char</span>* part_names[],
-<a name="l00480"></a>00480       size_t part_names_length, <span class="keywordtype">bool</span> check_terminal)
-<a name="l00481"></a>00481       throw (MessageFormatError, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00482"></a>00482 
-<a name="l00486"></a>00486     template &lt;size_t N&gt;
-<a name="l00487"></a>00487     inline
-<a name="l00488"></a>00488     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a> &lt;RoutingPolicy&gt;&amp;
-<a name="l00489"></a><a class="code" href="classZmqMessage_1_1Incoming.html#ced24f7c4548ded3c143fc0dae4996ce">00489</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(
-<a name="l00490"></a>00490       std::tr1::array&lt;const <span class="keywordtype">char</span>*, N&gt; part_names, <span class="keywordtype">bool</span> check_terminal)
-<a name="l00491"></a>00491       throw (MessageFormatError)
-<a name="l00492"></a>00492     {
-<a name="l00493"></a>00493       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(N, part_names.data(), check_terminal);
-<a name="l00494"></a>00494     }
-<a name="l00495"></a>00495 
-<a name="l00500"></a>00500     <span class="keyword">inline</span>
-<a name="l00501"></a>00501     Incoming &lt;RoutingPolicy&gt;&amp;
-<a name="l00502"></a><a class="code" href="classZmqMessage_1_1Incoming.html#99af78daa393ef82ec3debb1017d79b4">00502</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(size_t parts, <span class="keywordtype">bool</span> check_terminal)
-<a name="l00503"></a>00503       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
-<a name="l00504"></a>00504     {
-<a name="l00505"></a>00505       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(parts, 0, 0, check_terminal);
-<a name="l00506"></a>00506     }
+<a name="l00431"></a>00431     <span class="keywordtype">void</span>
+<a name="l00432"></a>00432     append_message_data(
+<a name="l00433"></a>00433       zmq::message_t&amp; message, std::vector&lt;char&gt;&amp; area) <span class="keyword">const</span>;
+<a name="l00434"></a>00434 
+<a name="l00439"></a>00439     <span class="keywordtype">bool</span>
+<a name="l00440"></a>00440     receive_one() <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l00441"></a>00441 
+<a name="l00442"></a>00442     <span class="keyword">template</span> &lt;<span class="keyword">class</span> OutRoutingPolicy&gt;
+<a name="l00443"></a><a class="code" href="classZmqMessage_1_1Incoming.html#a07ed4ec0770ac32318ba3231a93a8d5">00443</a>     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Outgoing.html">Outgoing</a>;
+<a name="l00444"></a>00444 
+<a name="l00445"></a>00445     <span class="keyword">inline</span>
+<a name="l00446"></a>00446     <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>*
+<a name="l00447"></a>00447     get_routing()
+<a name="l00448"></a>00448     {
+<a name="l00449"></a>00449       <span class="keywordflow">return</span> RoutingPolicy::get_routing();
+<a name="l00450"></a>00450     }
+<a name="l00451"></a>00451 
+<a name="l00452"></a>00452     <span class="keyword">friend</span>
+<a name="l00453"></a>00453     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;RoutingPolicy&gt;</a>&amp;
+<a name="l00454"></a>00454     Skip&lt;RoutingPolicy&gt;(<a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;RoutingPolicy&gt;</a>&amp;);
+<a name="l00455"></a>00455 
+<a name="l00456"></a>00456   <span class="keyword">public</span>:
+<a name="l00457"></a><a class="code" href="classZmqMessage_1_1Incoming.html#a7597114723906810953da34dcaec200">00457</a>     <span class="keyword">typedef</span> RoutingPolicy <a class="code" href="classZmqMessage_1_1Incoming.html#a7597114723906810953da34dcaec200">RoutingPolicyType</a>;
+<a name="l00458"></a>00458 
+<a name="l00459"></a><a class="code" href="classZmqMessage_1_1Incoming.html#8e91e1bc1aaeb5748139ddd54089805d">00459</a>     <span class="keyword">explicit</span> <a class="code" href="classZmqMessage_1_1Incoming.html#8e91e1bc1aaeb5748139ddd54089805d">Incoming</a>(zmq::socket_t&amp; sock)
+<a name="l00460"></a>00460         : src_(sock), is_terminal_(false),
+<a name="l00461"></a>00461           cur_extract_idx_(0), binary_mode_(false)
+<a name="l00462"></a>00462     {
+<a name="l00463"></a>00463     }
+<a name="l00464"></a>00464 
+<a name="l00468"></a>00468     <span class="keyword">inline</span>
+<a name="l00469"></a>00469     zmq::socket_t&amp;
+<a name="l00470"></a><a class="code" href="classZmqMessage_1_1Incoming.html#3a599de5a85d9d0e91a6dabf25b7ff3f">00470</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#3a599de5a85d9d0e91a6dabf25b7ff3f">src</a>()
+<a name="l00471"></a>00471     {
+<a name="l00472"></a>00472       <span class="keywordflow">return</span> src_;
+<a name="l00473"></a>00473     }
+<a name="l00474"></a>00474 
+<a name="l00479"></a>00479     <span class="keyword">inline</span>
+<a name="l00480"></a>00480     <span class="keywordtype">bool</span>
+<a name="l00481"></a><a class="code" href="classZmqMessage_1_1Incoming.html#a9249b5947628fa758209f61c00b4e02">00481</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#a9249b5947628fa758209f61c00b4e02">is_terminal</a>()<span class="keyword"> const</span>
+<a name="l00482"></a>00482 <span class="keyword">    </span>{
+<a name="l00483"></a>00483       <span class="keywordflow">return</span> is_terminal_;
+<a name="l00484"></a>00484     }
+<a name="l00485"></a>00485 
+<a name="l00490"></a>00490     <span class="keywordtype">void</span>
+<a name="l00491"></a>00491     <a class="code" href="classZmqMessage_1_1Incoming.html#b359d2fec5e4756b68a274567948b0ee">check_is_terminal</a>() const throw(<a class="code" href="classMessageFormatError.html">MessageFormatError</a>);
+<a name="l00492"></a>00492 
+<a name="l00502"></a>00502     <span class="keywordtype">void</span>
+<a name="l00503"></a>00503     <a class="code" href="classZmqMessage_1_1Incoming.html#d584f2eb5b7eeb952c2f69b0c6e0e85c">validate</a>(
+<a name="l00504"></a>00504       const <span class="keywordtype">char</span>* part_names[],
+<a name="l00505"></a>00505       size_t part_names_length, <span class="keywordtype">bool</span> strict)
+<a name="l00506"></a>00506       throw (MessageFormatError);
 <a name="l00507"></a>00507 
-<a name="l00512"></a>00512     <span class="keyword">inline</span>
-<a name="l00513"></a>00513     Incoming &lt;RoutingPolicy&gt;&amp;
-<a name="l00514"></a><a class="code" href="classZmqMessage_1_1Incoming.html#96fb7b1d637cdddfbecddf5640706f83">00514</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(
-<a name="l00515"></a>00515       size_t parts, <span class="keyword">const</span> <span class="keywordtype">char</span>* part_names[], <span class="keywordtype">bool</span> check_terminal)
-<a name="l00516"></a>00516       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
-<a name="l00517"></a>00517     {
-<a name="l00518"></a>00518       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(parts, part_names, parts, check_terminal);
-<a name="l00519"></a>00519     }
-<a name="l00520"></a>00520 
-<a name="l00526"></a>00526     Incoming &lt;RoutingPolicy&gt;&amp;
-<a name="l00527"></a>00527     <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(
-<a name="l00528"></a>00528       <span class="keyword">const</span> size_t min_parts,
-<a name="l00529"></a>00529       <span class="keyword">const</span> <span class="keywordtype">char</span>* part_names[], size_t part_names_length)
-<a name="l00530"></a>00530       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00531"></a>00531 
-<a name="l00536"></a>00536     <span class="keyword">inline</span>
-<a name="l00537"></a>00537     Incoming &lt;RoutingPolicy&gt;&amp;
-<a name="l00538"></a><a class="code" href="classZmqMessage_1_1Incoming.html#938f11c00d3a3d490baed7b96296eb20">00538</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(<span class="keyword">const</span> size_t min_parts, <span class="keyword">const</span> <span class="keywordtype">char</span>* part_names[])
-<a name="l00539"></a>00539       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
-<a name="l00540"></a>00540     {
-<a name="l00541"></a>00541       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(min_parts, part_names, min_parts);
-<a name="l00542"></a>00542     }
-<a name="l00543"></a>00543 
-<a name="l00548"></a>00548     <span class="keyword">inline</span>
-<a name="l00549"></a>00549     Incoming &lt;RoutingPolicy&gt;&amp;
-<a name="l00550"></a><a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">00550</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>()
-<a name="l00551"></a>00551       throw (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
-<a name="l00552"></a>00552     {
-<a name="l00553"></a>00553       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(0, 0, 0);
-<a name="l00554"></a>00554     }
-<a name="l00555"></a>00555 
-<a name="l00560"></a>00560     <span class="keyword">inline</span>
-<a name="l00561"></a>00561     Incoming &lt;RoutingPolicy&gt;&amp;
-<a name="l00562"></a><a class="code" href="classZmqMessage_1_1Incoming.html#78ce291a3dda5bc4379350fd40ae1b7c">00562</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(<span class="keyword">const</span> size_t min_parts)
-<a name="l00563"></a>00563       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
-<a name="l00564"></a>00564     {
-<a name="l00565"></a>00565       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(min_parts, 0, 0);
-<a name="l00566"></a>00566     }
-<a name="l00567"></a>00567 
-<a name="l00573"></a>00573     Incoming &lt;RoutingPolicy&gt;&amp;
-<a name="l00574"></a>00574     <a class="code" href="classZmqMessage_1_1Incoming.html#2e0c4e0cb1c90ab947d24eb29035bf23">receive_up_to</a>(size_t min_parts, <span class="keyword">const</span> <span class="keywordtype">char</span>* part_names[],
-<a name="l00575"></a>00575       size_t max_parts) <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00576"></a>00576 
-<a name="l00587"></a>00587     <span class="keywordtype">int</span>
-<a name="l00588"></a>00588     <a class="code" href="classZmqMessage_1_1Incoming.html#599981bdf6943f4afda550fd14b51625">fetch_tail</a>(std::vector&lt;char&gt;&amp; area, <span class="keyword">const</span> <span class="keywordtype">char</span>* delimiter = 0)
-<a name="l00589"></a>00589       throw (<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00590"></a>00590 
-<a name="l00596"></a>00596     <span class="keywordtype">int</span>
-<a name="l00597"></a>00597     <a class="code" href="classZmqMessage_1_1Incoming.html#0deb622275fa9536e1457beabe5b0f8b">drop_tail</a>() throw(ZmqErrorType);
-<a name="l00598"></a>00598 
-<a name="l00605"></a>00605     template &lt;typename T&gt;
-<a name="l00606"></a>00606     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp;
-<a name="l00607"></a>00607     operator&gt;&gt; (T&amp; t) throw(<a class="code" href="classNoSuchPartError.html">NoSuchPartError</a>);
-<a name="l00608"></a>00608 
-<a name="l00613"></a>00613     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp;
-<a name="l00614"></a>00614     operator&gt;&gt; (zmq::message_t&amp; msg) throw(NoSuchPartError);
-<a name="l00615"></a>00615 
-<a name="l00619"></a>00619     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp;
-<a name="l00620"></a><a class="code" href="classZmqMessage_1_1Incoming.html#fc93e64ed54ce61fa86af984c5f8138b">00620</a>     operator&gt;&gt; (<a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp; (*f)(<a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp;))
-<a name="l00621"></a>00621     {
-<a name="l00622"></a>00622       <span class="keywordflow">return</span> f(*<span class="keyword">this</span>);
-<a name="l00623"></a>00623     }
-<a name="l00624"></a>00624 
-<a name="l00630"></a>00630     <span class="keywordtype">void</span>
-<a name="l00631"></a><a class="code" href="classZmqMessage_1_1Incoming.html#a5cfa233db201795c3031951b4c55533">00631</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#a5cfa233db201795c3031951b4c55533">set_binary</a>()
-<a name="l00632"></a>00632     {
-<a name="l00633"></a>00633       binary_mode_ = <span class="keyword">true</span>;
-<a name="l00634"></a>00634     }
-<a name="l00635"></a>00635 
-<a name="l00642"></a>00642     <span class="keywordtype">void</span>
-<a name="l00643"></a><a class="code" href="classZmqMessage_1_1Incoming.html#fbc1b2a447f3ca945b75760e4b5116a8">00643</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#fbc1b2a447f3ca945b75760e4b5116a8">set_text</a>()
-<a name="l00644"></a>00644     {
-<a name="l00645"></a>00645       binary_mode_ = <span class="keyword">false</span>;
-<a name="l00646"></a>00646     }
-<a name="l00647"></a>00647   };
-<a name="l00648"></a>00648 
-<a name="l00655"></a><a class="code" href="structZmqMessage_1_1OutOptions.html">00655</a>   <span class="keyword">struct </span><a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a>
-<a name="l00656"></a>00656   {
-<a name="l00660"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#ada297235a6adb7dc637eab6e8cbe1b3">00660</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#ada297235a6adb7dc637eab6e8cbe1b3">NONBLOCK</a> = 0x1;
-<a name="l00664"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#adc74d66130c3ba01e9b74ca425d168b">00664</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#adc74d66130c3ba01e9b74ca425d168b">CACHE_ON_BLOCK</a> = 0x2;
-<a name="l00668"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#90fc3863c646724d897d30fcde3aff73">00668</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#90fc3863c646724d897d30fcde3aff73">DROP_ON_BLOCK</a> = 0x4;
-<a name="l00672"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#12708d6a2a20f5229fa6abc365bd64ce">00672</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#12708d6a2a20f5229fa6abc365bd64ce">COPY_INCOMING</a> = 0x8;
-<a name="l00673"></a>00673 
-<a name="l00677"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#76eb6d62f68906281f390df14b2cc9e9">00677</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#76eb6d62f68906281f390df14b2cc9e9">EMULATE_BLOCK_SENDS</a> = 0x10;
-<a name="l00678"></a>00678 
-<a name="l00684"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#7e32e290737ff0f3183b00c172bb291a">00684</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#7e32e290737ff0f3183b00c172bb291a">BINARY_MODE</a> = 0x20;
-<a name="l00685"></a>00685 
-<a name="l00686"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#35eb6cac2041f0c5dca8de7804f4d120">00686</a>     zmq::socket_t&amp; <a class="code" href="structZmqMessage_1_1OutOptions.html#35eb6cac2041f0c5dca8de7804f4d120">sock</a>;
-<a name="l00687"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#f43762bdf02e3f334d8380dd971d0456">00687</a>     <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#f43762bdf02e3f334d8380dd971d0456">options</a>;
-<a name="l00688"></a>00688 
-<a name="l00689"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#5e54d8fd4805efa28d01f5f1dbdff5ec">00689</a>     <span class="keyword">inline</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#5e54d8fd4805efa28d01f5f1dbdff5ec">OutOptions</a>(zmq::socket_t&amp; sock_p, <span class="keywordtype">unsigned</span> options_p) :
-<a name="l00690"></a>00690       <a class="code" href="structZmqMessage_1_1OutOptions.html#35eb6cac2041f0c5dca8de7804f4d120">sock</a>(sock_p), <a class="code" href="structZmqMessage_1_1OutOptions.html#f43762bdf02e3f334d8380dd971d0456">options</a>(options_p)
-<a name="l00691"></a>00691     {}
-<a name="l00692"></a>00692   };
-<a name="l00693"></a>00693 
-<a name="l00703"></a><a class="code" href="classZmqMessage_1_1Sink.html">00703</a>   <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Sink.html">Sink</a> : <span class="keyword">private</span> Private::NonCopyable
-<a name="l00704"></a>00704   {
-<a name="l00705"></a>00705   <span class="keyword">public</span>:
-<a name="l00710"></a>00710     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00711"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">00711</a>     <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator</a>
-<a name="l00712"></a>00712     {
-<a name="l00713"></a>00713     <span class="keyword">public</span>:
-<a name="l00714"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#d927e0fbd75b1f2a66b72edbf687aa55">00714</a>       <span class="keyword">typedef</span> T <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#d927e0fbd75b1f2a66b72edbf687aa55">value_type</a>;
-<a name="l00715"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#10800fcc3e587f089db86adaa1162e82">00715</a>       <span class="keyword">typedef</span> T&amp; <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#10800fcc3e587f089db86adaa1162e82">reference</a>;
-<a name="l00716"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#6363a6115c104b9d7a30af0b530b8d47">00716</a>       <span class="keyword">typedef</span> T* <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#6363a6115c104b9d7a30af0b530b8d47">pointer</a>;
-<a name="l00717"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#bfeb849f17aa034b4d7237d8bc113085">00717</a>       <span class="keyword">typedef</span> std::ptrdiff_t <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#bfeb849f17aa034b4d7237d8bc113085">difference_type</a>;
-<a name="l00718"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#9eaa3ce38ed40f4cbb88ab9c6904b746">00718</a>       <span class="keyword">typedef</span> std::output_iterator_tag <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#9eaa3ce38ed40f4cbb88ab9c6904b746">iterator_category</a>;
-<a name="l00719"></a>00719 
-<a name="l00720"></a>00720     <span class="keyword">private</span>:
-<a name="l00721"></a>00721       <span class="keyword">class </span>AssignProxy
-<a name="l00722"></a>00722       {
-<a name="l00723"></a>00723       <span class="keyword">public</span>:
-<a name="l00724"></a>00724         AssignProxy(<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; outgoing)
-<a name="l00725"></a>00725             : outgoing_(outgoing)
-<a name="l00726"></a>00726         {
-<a name="l00727"></a>00727         }
-<a name="l00728"></a>00728 
-<a name="l00729"></a>00729         <span class="keywordtype">void</span>
-<a name="l00730"></a>00730         operator=(<span class="keyword">const</span> T&amp; output_object)
-<a name="l00731"></a>00731         {
-<a name="l00732"></a>00732           outgoing_ &lt;&lt; output_object;
-<a name="l00733"></a>00733         }
-<a name="l00734"></a>00734 
-<a name="l00735"></a>00735       <span class="keyword">private</span>:
-<a name="l00736"></a>00736         <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; outgoing_;
-<a name="l00737"></a>00737       };
-<a name="l00738"></a>00738 
-<a name="l00739"></a>00739     <span class="keyword">public</span>:
-<a name="l00740"></a>00740       <span class="keyword">explicit</span>
-<a name="l00741"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#ef2b4cfd27b8c8c0a749afeeb0e5b8b0">00741</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#ef2b4cfd27b8c8c0a749afeeb0e5b8b0">iterator</a>(<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; outgoing)
-<a name="l00742"></a>00742           : outgoing_(outgoing)
-<a name="l00743"></a>00743       {
-<a name="l00744"></a>00744       }
-<a name="l00745"></a>00745 
-<a name="l00746"></a>00746       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator</a>
-<a name="l00747"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#f626e739c0a13e52b754452b252cbf42">00747</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#f626e739c0a13e52b754452b252cbf42">operator++</a>()
-<a name="l00748"></a>00748       {
-<a name="l00749"></a>00749         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00750"></a>00750       }
-<a name="l00751"></a>00751 
-<a name="l00752"></a>00752       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator</a>
-<a name="l00753"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#e7cee589befba24c8dd2bfaec471c128">00753</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#f626e739c0a13e52b754452b252cbf42">operator++</a>(<span class="keywordtype">int</span>)
-<a name="l00754"></a>00754       {
-<a name="l00755"></a>00755         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00756"></a>00756       }
-<a name="l00757"></a>00757 
-<a name="l00758"></a>00758       AssignProxy
-<a name="l00759"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#b7b6f68b44ddc2c16ea85380d8dbb0fa">00759</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#b7b6f68b44ddc2c16ea85380d8dbb0fa">operator*</a>()
-<a name="l00760"></a>00760       {
-<a name="l00761"></a>00761         <span class="keywordflow">return</span> AssignProxy(outgoing_);
-<a name="l00762"></a>00762       }
-<a name="l00763"></a>00763 
-<a name="l00764"></a>00764       <span class="keywordtype">bool</span>
-<a name="l00765"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#7eab35b39d1834e78951afbc9b7ad3db">00765</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#7eab35b39d1834e78951afbc9b7ad3db">operator==</a>(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)
-<a name="l00766"></a>00766       {
-<a name="l00767"></a>00767         <span class="keywordflow">return</span> equal(rhs);
-<a name="l00768"></a>00768       }
-<a name="l00769"></a>00769 
-<a name="l00770"></a>00770       <span class="keywordtype">bool</span>
-<a name="l00771"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#8fb00baf4182087920042133d9e7526c">00771</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#8fb00baf4182087920042133d9e7526c">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)
-<a name="l00772"></a>00772       {
-<a name="l00773"></a>00773         <span class="keywordflow">return</span> !equal(rhs);
-<a name="l00774"></a>00774       }
-<a name="l00775"></a>00775 
-<a name="l00776"></a>00776     <span class="keyword">private</span>:
-<a name="l00777"></a>00777       <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; outgoing_;
-<a name="l00778"></a>00778 
-<a name="l00779"></a>00779       <span class="keywordtype">bool</span>
-<a name="l00780"></a>00780       equal(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)<span class="keyword"> const</span>
-<a name="l00781"></a>00781 <span class="keyword">      </span>{
-<a name="l00782"></a>00782         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00517"></a>00517     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a> &lt;RoutingPolicy&gt;&amp;
+<a name="l00518"></a>00518     <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(
+<a name="l00519"></a>00519       size_t parts, const <span class="keywordtype">char</span>* part_names[],
+<a name="l00520"></a>00520       size_t part_names_length, <span class="keywordtype">bool</span> check_terminal)
+<a name="l00521"></a>00521       throw (MessageFormatError, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l00522"></a>00522 
+<a name="l00526"></a>00526     template &lt;size_t N&gt;
+<a name="l00527"></a>00527     inline
+<a name="l00528"></a>00528     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a> &lt;RoutingPolicy&gt;&amp;
+<a name="l00529"></a><a class="code" href="classZmqMessage_1_1Incoming.html#ced24f7c4548ded3c143fc0dae4996ce">00529</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(
+<a name="l00530"></a>00530       std::tr1::array&lt;const <span class="keywordtype">char</span>*, N&gt; part_names, <span class="keywordtype">bool</span> check_terminal)
+<a name="l00531"></a>00531       throw (MessageFormatError)
+<a name="l00532"></a>00532     {
+<a name="l00533"></a>00533       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(N, part_names.data(), check_terminal);
+<a name="l00534"></a>00534     }
+<a name="l00535"></a>00535 
+<a name="l00540"></a>00540     <span class="keyword">inline</span>
+<a name="l00541"></a>00541     Incoming &lt;RoutingPolicy&gt;&amp;
+<a name="l00542"></a><a class="code" href="classZmqMessage_1_1Incoming.html#99af78daa393ef82ec3debb1017d79b4">00542</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(size_t parts, <span class="keywordtype">bool</span> check_terminal)
+<a name="l00543"></a>00543       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
+<a name="l00544"></a>00544     {
+<a name="l00545"></a>00545       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(parts, 0, 0, check_terminal);
+<a name="l00546"></a>00546     }
+<a name="l00547"></a>00547 
+<a name="l00552"></a>00552     <span class="keyword">inline</span>
+<a name="l00553"></a>00553     Incoming &lt;RoutingPolicy&gt;&amp;
+<a name="l00554"></a><a class="code" href="classZmqMessage_1_1Incoming.html#96fb7b1d637cdddfbecddf5640706f83">00554</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(
+<a name="l00555"></a>00555       size_t parts, <span class="keyword">const</span> <span class="keywordtype">char</span>* part_names[], <span class="keywordtype">bool</span> check_terminal)
+<a name="l00556"></a>00556       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
+<a name="l00557"></a>00557     {
+<a name="l00558"></a>00558       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a>(parts, part_names, parts, check_terminal);
+<a name="l00559"></a>00559     }
+<a name="l00560"></a>00560 
+<a name="l00566"></a>00566     Incoming &lt;RoutingPolicy&gt;&amp;
+<a name="l00567"></a>00567     <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(
+<a name="l00568"></a>00568       <span class="keyword">const</span> size_t min_parts,
+<a name="l00569"></a>00569       <span class="keyword">const</span> <span class="keywordtype">char</span>* part_names[], size_t part_names_length)
+<a name="l00570"></a>00570       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l00571"></a>00571 
+<a name="l00576"></a>00576     <span class="keyword">inline</span>
+<a name="l00577"></a>00577     Incoming &lt;RoutingPolicy&gt;&amp;
+<a name="l00578"></a><a class="code" href="classZmqMessage_1_1Incoming.html#938f11c00d3a3d490baed7b96296eb20">00578</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(<span class="keyword">const</span> size_t min_parts, <span class="keyword">const</span> <span class="keywordtype">char</span>* part_names[])
+<a name="l00579"></a>00579       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
+<a name="l00580"></a>00580     {
+<a name="l00581"></a>00581       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(min_parts, part_names, min_parts);
+<a name="l00582"></a>00582     }
+<a name="l00583"></a>00583 
+<a name="l00588"></a>00588     <span class="keyword">inline</span>
+<a name="l00589"></a>00589     Incoming &lt;RoutingPolicy&gt;&amp;
+<a name="l00590"></a><a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">00590</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>()
+<a name="l00591"></a>00591       throw (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
+<a name="l00592"></a>00592     {
+<a name="l00593"></a>00593       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(0, 0, 0);
+<a name="l00594"></a>00594     }
+<a name="l00595"></a>00595 
+<a name="l00600"></a>00600     <span class="keyword">inline</span>
+<a name="l00601"></a>00601     Incoming &lt;RoutingPolicy&gt;&amp;
+<a name="l00602"></a><a class="code" href="classZmqMessage_1_1Incoming.html#78ce291a3dda5bc4379350fd40ae1b7c">00602</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(<span class="keyword">const</span> size_t min_parts)
+<a name="l00603"></a>00603       <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)
+<a name="l00604"></a>00604     {
+<a name="l00605"></a>00605       <span class="keywordflow">return</span> <a class="code" href="classZmqMessage_1_1Incoming.html#e012ec4e31530b336dcb933222e815b1">receive_all</a>(min_parts, 0, 0);
+<a name="l00606"></a>00606     }
+<a name="l00607"></a>00607 
+<a name="l00613"></a>00613     Incoming &lt;RoutingPolicy&gt;&amp;
+<a name="l00614"></a>00614     <a class="code" href="classZmqMessage_1_1Incoming.html#2e0c4e0cb1c90ab947d24eb29035bf23">receive_up_to</a>(size_t min_parts, <span class="keyword">const</span> <span class="keywordtype">char</span>* part_names[],
+<a name="l00615"></a>00615       size_t max_parts) <span class="keywordflow">throw</span> (<a class="code" href="classMessageFormatError.html">MessageFormatError</a>, <a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l00616"></a>00616 
+<a name="l00626"></a>00626     <span class="keywordtype">int</span>
+<a name="l00627"></a>00627     <a class="code" href="classZmqMessage_1_1Incoming.html#599981bdf6943f4afda550fd14b51625">fetch_tail</a>(std::vector&lt;char&gt;&amp; area, <span class="keyword">const</span> <span class="keywordtype">char</span>* delimiter = 0)
+<a name="l00628"></a>00628       throw (<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l00629"></a>00629 
+<a name="l00635"></a>00635     <span class="keywordtype">int</span>
+<a name="l00636"></a>00636     <a class="code" href="classZmqMessage_1_1Incoming.html#0deb622275fa9536e1457beabe5b0f8b">drop_tail</a>() throw(ZmqErrorType);
+<a name="l00637"></a>00637 
+<a name="l00644"></a>00644     template &lt;typename T&gt;
+<a name="l00645"></a>00645     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp;
+<a name="l00646"></a>00646     operator&gt;&gt; (T&amp; t) throw(<a class="code" href="classNoSuchPartError.html">NoSuchPartError</a>);
+<a name="l00647"></a>00647 
+<a name="l00652"></a>00652     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp;
+<a name="l00653"></a>00653     operator&gt;&gt; (zmq::message_t&amp; msg) throw(NoSuchPartError);
+<a name="l00654"></a>00654 
+<a name="l00658"></a>00658     <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp;
+<a name="l00659"></a><a class="code" href="classZmqMessage_1_1Incoming.html#fc93e64ed54ce61fa86af984c5f8138b">00659</a>     operator&gt;&gt; (<a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp; (*f)(<a class="code" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt;RoutingPolicy&gt;&amp;))
+<a name="l00660"></a>00660     {
+<a name="l00661"></a>00661       <span class="keywordflow">return</span> f(*<span class="keyword">this</span>);
+<a name="l00662"></a>00662     }
+<a name="l00663"></a>00663 
+<a name="l00669"></a>00669     <span class="keywordtype">void</span>
+<a name="l00670"></a><a class="code" href="classZmqMessage_1_1Incoming.html#a5cfa233db201795c3031951b4c55533">00670</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#a5cfa233db201795c3031951b4c55533">set_binary</a>()
+<a name="l00671"></a>00671     {
+<a name="l00672"></a>00672       binary_mode_ = <span class="keyword">true</span>;
+<a name="l00673"></a>00673     }
+<a name="l00674"></a>00674 
+<a name="l00681"></a>00681     <span class="keywordtype">void</span>
+<a name="l00682"></a><a class="code" href="classZmqMessage_1_1Incoming.html#fbc1b2a447f3ca945b75760e4b5116a8">00682</a>     <a class="code" href="classZmqMessage_1_1Incoming.html#fbc1b2a447f3ca945b75760e4b5116a8">set_text</a>()
+<a name="l00683"></a>00683     {
+<a name="l00684"></a>00684       binary_mode_ = <span class="keyword">false</span>;
+<a name="l00685"></a>00685     }
+<a name="l00686"></a>00686   };
+<a name="l00687"></a>00687 
+<a name="l00694"></a><a class="code" href="structZmqMessage_1_1OutOptions.html">00694</a>   <span class="keyword">struct </span><a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a>
+<a name="l00695"></a>00695   {
+<a name="l00699"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#ada297235a6adb7dc637eab6e8cbe1b3">00699</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#ada297235a6adb7dc637eab6e8cbe1b3">NONBLOCK</a> = 0x1;
+<a name="l00703"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#adc74d66130c3ba01e9b74ca425d168b">00703</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#adc74d66130c3ba01e9b74ca425d168b">CACHE_ON_BLOCK</a> = 0x2;
+<a name="l00707"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#90fc3863c646724d897d30fcde3aff73">00707</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#90fc3863c646724d897d30fcde3aff73">DROP_ON_BLOCK</a> = 0x4;
+<a name="l00711"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#12708d6a2a20f5229fa6abc365bd64ce">00711</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#12708d6a2a20f5229fa6abc365bd64ce">COPY_INCOMING</a> = 0x8;
+<a name="l00712"></a>00712 
+<a name="l00716"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#76eb6d62f68906281f390df14b2cc9e9">00716</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#76eb6d62f68906281f390df14b2cc9e9">EMULATE_BLOCK_SENDS</a> = 0x10;
+<a name="l00717"></a>00717 
+<a name="l00723"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#7e32e290737ff0f3183b00c172bb291a">00723</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#7e32e290737ff0f3183b00c172bb291a">BINARY_MODE</a> = 0x20;
+<a name="l00724"></a>00724 
+<a name="l00725"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#35eb6cac2041f0c5dca8de7804f4d120">00725</a>     zmq::socket_t&amp; <a class="code" href="structZmqMessage_1_1OutOptions.html#35eb6cac2041f0c5dca8de7804f4d120">sock</a>;
+<a name="l00726"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#f43762bdf02e3f334d8380dd971d0456">00726</a>     <span class="keywordtype">unsigned</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#f43762bdf02e3f334d8380dd971d0456">options</a>;
+<a name="l00727"></a>00727 
+<a name="l00728"></a><a class="code" href="structZmqMessage_1_1OutOptions.html#5e54d8fd4805efa28d01f5f1dbdff5ec">00728</a>     <span class="keyword">inline</span> <a class="code" href="structZmqMessage_1_1OutOptions.html#5e54d8fd4805efa28d01f5f1dbdff5ec">OutOptions</a>(zmq::socket_t&amp; sock_p, <span class="keywordtype">unsigned</span> options_p) :
+<a name="l00729"></a>00729       <a class="code" href="structZmqMessage_1_1OutOptions.html#35eb6cac2041f0c5dca8de7804f4d120">sock</a>(sock_p), <a class="code" href="structZmqMessage_1_1OutOptions.html#f43762bdf02e3f334d8380dd971d0456">options</a>(options_p)
+<a name="l00730"></a>00730     {}
+<a name="l00731"></a>00731   };
+<a name="l00732"></a>00732 
+<a name="l00742"></a><a class="code" href="classZmqMessage_1_1Sink.html">00742</a>   <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Sink.html">Sink</a> : <span class="keyword">private</span> Private::NonCopyable
+<a name="l00743"></a>00743   {
+<a name="l00744"></a>00744   <span class="keyword">public</span>:
+<a name="l00749"></a>00749     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00750"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">00750</a>     <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator</a>
+<a name="l00751"></a>00751     {
+<a name="l00752"></a>00752     <span class="keyword">public</span>:
+<a name="l00753"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#d927e0fbd75b1f2a66b72edbf687aa55">00753</a>       <span class="keyword">typedef</span> T <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#d927e0fbd75b1f2a66b72edbf687aa55">value_type</a>;
+<a name="l00754"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#10800fcc3e587f089db86adaa1162e82">00754</a>       <span class="keyword">typedef</span> T&amp; <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#10800fcc3e587f089db86adaa1162e82">reference</a>;
+<a name="l00755"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#6363a6115c104b9d7a30af0b530b8d47">00755</a>       <span class="keyword">typedef</span> T* <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#6363a6115c104b9d7a30af0b530b8d47">pointer</a>;
+<a name="l00756"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#bfeb849f17aa034b4d7237d8bc113085">00756</a>       <span class="keyword">typedef</span> std::ptrdiff_t <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#bfeb849f17aa034b4d7237d8bc113085">difference_type</a>;
+<a name="l00757"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#9eaa3ce38ed40f4cbb88ab9c6904b746">00757</a>       <span class="keyword">typedef</span> std::output_iterator_tag <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#9eaa3ce38ed40f4cbb88ab9c6904b746">iterator_category</a>;
+<a name="l00758"></a>00758 
+<a name="l00759"></a>00759     <span class="keyword">private</span>:
+<a name="l00760"></a>00760       <span class="keyword">class </span>AssignProxy
+<a name="l00761"></a>00761       {
+<a name="l00762"></a>00762       <span class="keyword">public</span>:
+<a name="l00763"></a>00763         AssignProxy(<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; outgoing)
+<a name="l00764"></a>00764             : outgoing_(outgoing)
+<a name="l00765"></a>00765         {
+<a name="l00766"></a>00766         }
+<a name="l00767"></a>00767 
+<a name="l00768"></a>00768         <span class="keywordtype">void</span>
+<a name="l00769"></a>00769         operator=(<span class="keyword">const</span> T&amp; output_object)
+<a name="l00770"></a>00770         {
+<a name="l00771"></a>00771           outgoing_ &lt;&lt; output_object;
+<a name="l00772"></a>00772         }
+<a name="l00773"></a>00773 
+<a name="l00774"></a>00774       <span class="keyword">private</span>:
+<a name="l00775"></a>00775         <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; outgoing_;
+<a name="l00776"></a>00776       };
+<a name="l00777"></a>00777 
+<a name="l00778"></a>00778     <span class="keyword">public</span>:
+<a name="l00779"></a>00779       <span class="keyword">explicit</span>
+<a name="l00780"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#ef2b4cfd27b8c8c0a749afeeb0e5b8b0">00780</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#ef2b4cfd27b8c8c0a749afeeb0e5b8b0">iterator</a>(<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; outgoing)
+<a name="l00781"></a>00781           : outgoing_(outgoing)
+<a name="l00782"></a>00782       {
 <a name="l00783"></a>00783       }
-<a name="l00784"></a>00784     };
-<a name="l00785"></a>00785 
-<a name="l00786"></a>00786   <span class="keyword">private</span>:
-<a name="l00787"></a>00787     <span class="keyword">typedef</span> std::auto_ptr&lt;zmq::message_t&gt; MsgPtr;
-<a name="l00788"></a>00788 
-<a name="l00789"></a>00789     zmq::socket_t&amp; dst_;
+<a name="l00784"></a>00784 
+<a name="l00785"></a>00785       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator</a>
+<a name="l00786"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#f626e739c0a13e52b754452b252cbf42">00786</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#f626e739c0a13e52b754452b252cbf42">operator++</a>()
+<a name="l00787"></a>00787       {
+<a name="l00788"></a>00788         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00789"></a>00789       }
 <a name="l00790"></a>00790 
-<a name="l00791"></a>00791     <span class="keywordtype">unsigned</span> options_;
-<a name="l00792"></a>00792 
-<a name="l00798"></a>00798     Multipart* incoming_;
-<a name="l00799"></a>00799 
-<a name="l00800"></a>00800     std::auto_ptr&lt;Multipart&gt; outgoing_queue_;
-<a name="l00801"></a>00801 
-<a name="l00806"></a>00806     MsgPtr cached_;
-<a name="l00807"></a>00807 
-<a name="l00808"></a>00808     <span class="keyword">enum</span> State
-<a name="l00809"></a>00809     {
-<a name="l00810"></a>00810       NOTSENT, <span class="comment">//&lt;! we haven't sent messages</span>
-<a name="l00811"></a>00811       SENDING, <span class="comment">//&lt;! we have sent at least one message, it's OK</span>
-<a name="l00812"></a>00812       QUEUEING,  <span class="comment">//&lt;! we failed to send, queueing to @c outgoing_queue_ instead</span>
-<a name="l00813"></a>00813       DROPPING,  <span class="comment">//&lt;! we failed to send, dropped. Terminal state</span>
-<a name="l00814"></a>00814       FLUSHED  <span class="comment">//&lt;! Message is flushed, all messages are sent or queued, no more messages accepted</span>
-<a name="l00815"></a>00815     };
-<a name="l00816"></a>00816 
-<a name="l00817"></a>00817     State state_;
-<a name="l00818"></a>00818 
-<a name="l00819"></a>00819   <span class="keyword">protected</span>:
-<a name="l00820"></a><a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">00820</a>     <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(zmq::socket_t&amp; <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>, <span class="keywordtype">unsigned</span> <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>, <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>* <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a> = 0) :
-<a name="l00821"></a>00821       dst_(dst), options_(options), incoming_(<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>),
-<a name="l00822"></a>00822       outgoing_queue_(0), cached_(0), state_(NOTSENT)
-<a name="l00823"></a>00823     {}
+<a name="l00791"></a>00791       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator</a>
+<a name="l00792"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#e7cee589befba24c8dd2bfaec471c128">00792</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#f626e739c0a13e52b754452b252cbf42">operator++</a>(<span class="keywordtype">int</span>)
+<a name="l00793"></a>00793       {
+<a name="l00794"></a>00794         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00795"></a>00795       }
+<a name="l00796"></a>00796 
+<a name="l00797"></a>00797       AssignProxy
+<a name="l00798"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#b7b6f68b44ddc2c16ea85380d8dbb0fa">00798</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#b7b6f68b44ddc2c16ea85380d8dbb0fa">operator*</a>()
+<a name="l00799"></a>00799       {
+<a name="l00800"></a>00800         <span class="keywordflow">return</span> AssignProxy(outgoing_);
+<a name="l00801"></a>00801       }
+<a name="l00802"></a>00802 
+<a name="l00803"></a>00803       <span class="keywordtype">bool</span>
+<a name="l00804"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#7eab35b39d1834e78951afbc9b7ad3db">00804</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#7eab35b39d1834e78951afbc9b7ad3db">operator==</a>(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)
+<a name="l00805"></a>00805       {
+<a name="l00806"></a>00806         <span class="keywordflow">return</span> equal(rhs);
+<a name="l00807"></a>00807       }
+<a name="l00808"></a>00808 
+<a name="l00809"></a>00809       <span class="keywordtype">bool</span>
+<a name="l00810"></a><a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#8fb00baf4182087920042133d9e7526c">00810</a>       <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html#8fb00baf4182087920042133d9e7526c">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)
+<a name="l00811"></a>00811       {
+<a name="l00812"></a>00812         <span class="keywordflow">return</span> !equal(rhs);
+<a name="l00813"></a>00813       }
+<a name="l00814"></a>00814 
+<a name="l00815"></a>00815     <span class="keyword">private</span>:
+<a name="l00816"></a>00816       <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; outgoing_;
+<a name="l00817"></a>00817 
+<a name="l00818"></a>00818       <span class="keywordtype">bool</span>
+<a name="l00819"></a>00819       equal(<span class="keyword">const</span> <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">iterator&lt;T&gt;</a>&amp; rhs)<span class="keyword"> const</span>
+<a name="l00820"></a>00820 <span class="keyword">      </span>{
+<a name="l00821"></a>00821         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00822"></a>00822       }
+<a name="l00823"></a>00823     };
 <a name="l00824"></a>00824 
-<a name="l00825"></a>00825     <span class="keyword">inline</span>
-<a name="l00826"></a>00826     <span class="keywordtype">unsigned</span>
-<a name="l00827"></a><a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">00827</a>     <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>()<span class="keyword"> const</span>
-<a name="l00828"></a>00828 <span class="keyword">    </span>{
-<a name="l00829"></a>00829       <span class="keywordflow">return</span> options_;
-<a name="l00830"></a>00830     }
+<a name="l00825"></a>00825   <span class="keyword">private</span>:
+<a name="l00826"></a>00826     <span class="keyword">typedef</span> std::auto_ptr&lt;zmq::message_t&gt; MsgPtr;
+<a name="l00827"></a>00827 
+<a name="l00828"></a>00828     zmq::socket_t&amp; dst_;
+<a name="l00829"></a>00829 
+<a name="l00830"></a>00830     <span class="keywordtype">unsigned</span> options_;
 <a name="l00831"></a>00831 
-<a name="l00832"></a>00832     <span class="keywordtype">void</span>
-<a name="l00833"></a>00833     <a class="code" href="classZmqMessage_1_1Sink.html#2b1a4e928ea2210835607e8365283a56">send_one</a>(
-<a name="l00834"></a>00834       zmq::message_t* msg, <span class="keywordtype">bool</span> use_copy = <span class="keyword">false</span>)
-<a name="l00835"></a>00835       throw(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00836"></a>00836 
-<a name="l00837"></a>00837   private:
-<a name="l00838"></a>00838     <span class="keywordtype">void</span>
-<a name="l00839"></a>00839     send_owned(zmq::message_t* owned) throw(ZmqErrorType);
+<a name="l00837"></a>00837     Multipart* incoming_;
+<a name="l00838"></a>00838 
+<a name="l00839"></a>00839     std::auto_ptr&lt;Multipart&gt; outgoing_queue_;
 <a name="l00840"></a>00840 
-<a name="l00841"></a>00841     <span class="keywordtype">void</span>
-<a name="l00842"></a>00842     do_send_one(
-<a name="l00843"></a>00843       zmq::message_t* msg, <span class="keywordtype">bool</span> last) throw(ZmqErrorType);
-<a name="l00844"></a>00844 
-<a name="l00845"></a>00845     <span class="keywordtype">bool</span>
-<a name="l00846"></a>00846     try_send_first_cached(
-<a name="l00847"></a>00847       <span class="keywordtype">bool</span> last) throw(ZmqErrorType);
-<a name="l00848"></a>00848 
-<a name="l00849"></a>00849     <span class="keywordtype">void</span>
-<a name="l00850"></a>00850     add_to_queue(zmq::message_t* msg);
-<a name="l00851"></a>00851 
-<a name="l00852"></a>00852   public:
-<a name="l00853"></a>00853     ~<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>();
-<a name="l00854"></a>00854 
-<a name="l00859"></a>00859      const <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>*
-<a name="l00860"></a><a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">00860</a>      <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>()<span class="keyword"> const</span>
-<a name="l00861"></a>00861 <span class="keyword">     </span>{
-<a name="l00862"></a>00862        <span class="keywordflow">return</span> incoming_;
-<a name="l00863"></a>00863      }
-<a name="l00864"></a>00864 
-<a name="l00869"></a>00869      <span class="keyword">inline</span>
-<a name="l00870"></a>00870      <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>*
-<a name="l00871"></a><a class="code" href="classZmqMessage_1_1Sink.html#59f9d277f528a97ad1eb2df45786b730">00871</a>      <a class="code" href="classZmqMessage_1_1Sink.html#59f9d277f528a97ad1eb2df45786b730">detach</a>()
-<a name="l00872"></a>00872      {
-<a name="l00873"></a>00873        <span class="keywordflow">return</span> outgoing_queue_.release();
-<a name="l00874"></a>00874      }
+<a name="l00845"></a>00845     MsgPtr cached_;
+<a name="l00846"></a>00846 
+<a name="l00847"></a>00847     <span class="keyword">enum</span> State
+<a name="l00848"></a>00848     {
+<a name="l00849"></a>00849       NOTSENT, <span class="comment">//&lt;! we haven't sent messages</span>
+<a name="l00850"></a>00850       SENDING, <span class="comment">//&lt;! we have sent at least one message, it's OK</span>
+<a name="l00851"></a>00851       QUEUEING,  <span class="comment">//&lt;! we failed to send, queueing to @c outgoing_queue_ instead</span>
+<a name="l00852"></a>00852       DROPPING,  <span class="comment">//&lt;! we failed to send, dropped. Terminal state</span>
+<a name="l00853"></a>00853       FLUSHED  <span class="comment">//&lt;! Message is flushed, all messages are sent or queued, no more messages accepted</span>
+<a name="l00854"></a>00854     };
+<a name="l00855"></a>00855 
+<a name="l00856"></a>00856     State state_;
+<a name="l00857"></a>00857 
+<a name="l00858"></a>00858   <span class="keyword">protected</span>:
+<a name="l00859"></a><a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">00859</a>     <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(zmq::socket_t&amp; <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>, <span class="keywordtype">unsigned</span> <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>, <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>* <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a> = 0) :
+<a name="l00860"></a>00860       dst_(dst), options_(options), incoming_(<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>),
+<a name="l00861"></a>00861       outgoing_queue_(0), cached_(0), state_(NOTSENT)
+<a name="l00862"></a>00862     {}
+<a name="l00863"></a>00863 
+<a name="l00864"></a>00864     <span class="keyword">inline</span>
+<a name="l00865"></a>00865     <span class="keywordtype">unsigned</span>
+<a name="l00866"></a><a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">00866</a>     <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>()<span class="keyword"> const</span>
+<a name="l00867"></a>00867 <span class="keyword">    </span>{
+<a name="l00868"></a>00868       <span class="keywordflow">return</span> options_;
+<a name="l00869"></a>00869     }
+<a name="l00870"></a>00870 
+<a name="l00871"></a>00871     <span class="keywordtype">void</span>
+<a name="l00872"></a>00872     <a class="code" href="classZmqMessage_1_1Sink.html#2b1a4e928ea2210835607e8365283a56">send_one</a>(
+<a name="l00873"></a>00873       zmq::message_t* msg, <span class="keywordtype">bool</span> use_copy = <span class="keyword">false</span>)
+<a name="l00874"></a>00874       throw(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
 <a name="l00875"></a>00875 
-<a name="l00879"></a>00879      <span class="keyword">inline</span>
-<a name="l00880"></a>00880      <span class="keywordtype">bool</span>
-<a name="l00881"></a><a class="code" href="classZmqMessage_1_1Sink.html#23cf47731ec4e7c1f2f33383a85cb21b">00881</a>      <a class="code" href="classZmqMessage_1_1Sink.html#23cf47731ec4e7c1f2f33383a85cb21b">is_queued</a>()<span class="keyword"> const</span>
-<a name="l00882"></a>00882 <span class="keyword">     </span>{
-<a name="l00883"></a>00883        <span class="keywordflow">return</span> (outgoing_queue_.get() != 0);
-<a name="l00884"></a>00884      }
-<a name="l00885"></a>00885 
-<a name="l00890"></a>00890      <span class="keyword">inline</span>
-<a name="l00891"></a>00891      <span class="keywordtype">bool</span>
-<a name="l00892"></a><a class="code" href="classZmqMessage_1_1Sink.html#3411f505ea516c2fd3d877f8cf1b8884">00892</a>      <a class="code" href="classZmqMessage_1_1Sink.html#3411f505ea516c2fd3d877f8cf1b8884">is_dropping</a>()<span class="keyword"> const</span>
-<a name="l00893"></a>00893 <span class="keyword">     </span>{
-<a name="l00894"></a>00894        <span class="keywordflow">return</span> (state_ == DROPPING);
-<a name="l00895"></a>00895      }
-<a name="l00896"></a>00896 
-<a name="l00900"></a>00900      <span class="keyword">inline</span>
-<a name="l00901"></a>00901      zmq::socket_t&amp;
-<a name="l00902"></a><a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">00902</a>      <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>()
-<a name="l00903"></a>00903      {
-<a name="l00904"></a>00904        <span class="keywordflow">return</span> dst_;
-<a name="l00905"></a>00905      }
-<a name="l00906"></a>00906 
-<a name="l00910"></a>00910      <span class="keywordtype">void</span>
-<a name="l00911"></a>00911      <a class="code" href="classZmqMessage_1_1Sink.html#152cab862a531c693ea01e5a5e1b00fc">flush</a>() throw(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00912"></a>00912 
-<a name="l00913"></a>00913      <span class="keywordtype">void</span>
-<a name="l00914"></a><a class="code" href="classZmqMessage_1_1Sink.html#96d0a15e4d8becd71c5da88738ee7907">00914</a>      <a class="code" href="classZmqMessage_1_1Sink.html#96d0a15e4d8becd71c5da88738ee7907">set_binary</a>()
-<a name="l00915"></a>00915      {
-<a name="l00916"></a>00916        options_ |= <a class="code" href="structZmqMessage_1_1OutOptions.html#7e32e290737ff0f3183b00c172bb291a">OutOptions::BINARY_MODE</a>;
-<a name="l00917"></a>00917      }
-<a name="l00918"></a>00918 
-<a name="l00919"></a>00919      <span class="keywordtype">void</span>
-<a name="l00920"></a><a class="code" href="classZmqMessage_1_1Sink.html#b68e74750101c33aa6cbbb74dfbd4d96">00920</a>      <a class="code" href="classZmqMessage_1_1Sink.html#b68e74750101c33aa6cbbb74dfbd4d96">set_text</a>()
-<a name="l00921"></a>00921      {
-<a name="l00922"></a>00922        options_ &amp;= ~<a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a>::BINARY_MODE;
-<a name="l00923"></a>00923      }
-<a name="l00924"></a>00924 
-<a name="l00928"></a>00928      <span class="keywordtype">void</span>
-<a name="l00929"></a>00929      <a class="code" href="classZmqMessage_1_1Sink.html#5bab70db811eeb1357af64c5aa76ede1">send_incoming_messages</a>(size_t idx_from = 0) throw(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00930"></a>00930 
-<a name="l00934"></a>00934      <span class="keywordtype">void</span>
-<a name="l00935"></a>00935      <a class="code" href="classZmqMessage_1_1Sink.html#4446da06ade4c29686f7795b5dd1f256">relay_from</a>(zmq::socket_t&amp; relay_src) throw(ZmqErrorType);
+<a name="l00876"></a>00876   private:
+<a name="l00877"></a>00877     <span class="keywordtype">void</span>
+<a name="l00878"></a>00878     send_owned(zmq::message_t* owned) throw(ZmqErrorType);
+<a name="l00879"></a>00879 
+<a name="l00880"></a>00880     <span class="keywordtype">void</span>
+<a name="l00881"></a>00881     do_send_one(
+<a name="l00882"></a>00882       zmq::message_t* msg, <span class="keywordtype">bool</span> last) throw(ZmqErrorType);
+<a name="l00883"></a>00883 
+<a name="l00884"></a>00884     <span class="keywordtype">bool</span>
+<a name="l00885"></a>00885     try_send_first_cached(
+<a name="l00886"></a>00886       <span class="keywordtype">bool</span> last) throw(ZmqErrorType);
+<a name="l00887"></a>00887 
+<a name="l00888"></a>00888     <span class="keywordtype">void</span>
+<a name="l00889"></a>00889     add_to_queue(zmq::message_t* msg);
+<a name="l00890"></a>00890 
+<a name="l00891"></a>00891   public:
+<a name="l00892"></a>00892     virtual
+<a name="l00893"></a>00893     ~<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>();
+<a name="l00894"></a>00894 
+<a name="l00899"></a>00899      const <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>*
+<a name="l00900"></a><a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">00900</a>      <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>()<span class="keyword"> const</span>
+<a name="l00901"></a>00901 <span class="keyword">     </span>{
+<a name="l00902"></a>00902        <span class="keywordflow">return</span> incoming_;
+<a name="l00903"></a>00903      }
+<a name="l00904"></a>00904 
+<a name="l00909"></a>00909      <span class="keyword">inline</span>
+<a name="l00910"></a>00910      <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>*
+<a name="l00911"></a><a class="code" href="classZmqMessage_1_1Sink.html#59f9d277f528a97ad1eb2df45786b730">00911</a>      <a class="code" href="classZmqMessage_1_1Sink.html#59f9d277f528a97ad1eb2df45786b730">detach</a>()
+<a name="l00912"></a>00912      {
+<a name="l00913"></a>00913        <span class="keywordflow">return</span> outgoing_queue_.release();
+<a name="l00914"></a>00914      }
+<a name="l00915"></a>00915 
+<a name="l00919"></a>00919      <span class="keyword">inline</span>
+<a name="l00920"></a>00920      <span class="keywordtype">bool</span>
+<a name="l00921"></a><a class="code" href="classZmqMessage_1_1Sink.html#23cf47731ec4e7c1f2f33383a85cb21b">00921</a>      <a class="code" href="classZmqMessage_1_1Sink.html#23cf47731ec4e7c1f2f33383a85cb21b">is_queued</a>()<span class="keyword"> const</span>
+<a name="l00922"></a>00922 <span class="keyword">     </span>{
+<a name="l00923"></a>00923        <span class="keywordflow">return</span> (outgoing_queue_.get() != 0);
+<a name="l00924"></a>00924      }
+<a name="l00925"></a>00925 
+<a name="l00930"></a>00930      <span class="keyword">inline</span>
+<a name="l00931"></a>00931      <span class="keywordtype">bool</span>
+<a name="l00932"></a><a class="code" href="classZmqMessage_1_1Sink.html#3411f505ea516c2fd3d877f8cf1b8884">00932</a>      <a class="code" href="classZmqMessage_1_1Sink.html#3411f505ea516c2fd3d877f8cf1b8884">is_dropping</a>()<span class="keyword"> const</span>
+<a name="l00933"></a>00933 <span class="keyword">     </span>{
+<a name="l00934"></a>00934        <span class="keywordflow">return</span> (state_ == DROPPING);
+<a name="l00935"></a>00935      }
 <a name="l00936"></a>00936 
-<a name="l00942"></a>00942      template &lt;class OccupationAccumulator&gt;
-<a name="l00943"></a>00943      <span class="keywordtype">void</span>
-<a name="l00944"></a>00944      <a class="code" href="classZmqMessage_1_1Sink.html#4446da06ade4c29686f7795b5dd1f256">relay_from</a>(
-<a name="l00945"></a>00945        zmq::socket_t&amp; relay_src, OccupationAccumulator acc)
-<a name="l00946"></a>00946        throw (ZmqErrorType);
-<a name="l00947"></a>00947 
-<a name="l00952"></a>00952      template &lt;typename T&gt;
-<a name="l00953"></a>00953      <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
-<a name="l00954"></a>00954      operator&lt;&lt; (const T&amp; t) throw (ZmqErrorType);
-<a name="l00955"></a>00955 
-<a name="l00964"></a>00964      <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
-<a name="l00965"></a>00965      operator&lt;&lt; (zmq::message_t&amp; msg) throw (ZmqErrorType);
-<a name="l00966"></a>00966 
-<a name="l00972"></a>00972      inline <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
-<a name="l00973"></a><a class="code" href="classZmqMessage_1_1Sink.html#cca8dc4dc46145dfcafe896a6c3e86db">00973</a>      operator&lt;&lt; (MsgPtr msg) throw (ZmqErrorType)
-<a name="l00974"></a>00974      {
-<a name="l00975"></a>00975        send_owned(msg.get() ? msg.release() : <span class="keyword">new</span> zmq::message_t(0));
-<a name="l00976"></a>00976        <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00977"></a>00977      }
-<a name="l00978"></a>00978 
-<a name="l00982"></a>00982      <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
-<a name="l00983"></a>00983      <a class="code" href="classZmqMessage_1_1Sink.html#719c8dc843ef3fd7f939c8203a7a48c0">operator&lt;&lt; </a>(<span class="keyword">const</span> <a class="code" href="structZmqMessage_1_1RawMessage.html">RawMessage</a>&amp; m) <span class="keywordflow">throw</span> (<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l00984"></a>00984 
-<a name="l00988"></a>00988      <span class="keyword">inline</span> <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
-<a name="l00989"></a><a class="code" href="classZmqMessage_1_1Sink.html#8c04615fc01de06cfb905f9e75821f56">00989</a>      <a class="code" href="classZmqMessage_1_1Sink.html#719c8dc843ef3fd7f939c8203a7a48c0">operator&lt;&lt; </a>(<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; (*f)(<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;))
-<a name="l00990"></a>00990      {
-<a name="l00991"></a>00991        <span class="keywordflow">return</span> f(*<span class="keyword">this</span>);
-<a name="l00992"></a>00992      }
-<a name="l00993"></a>00993   };
-<a name="l00994"></a>00994 
-<a name="l01011"></a>01011   <span class="keyword">template</span> &lt;<span class="keyword">class</span> RoutingPolicy&gt;
-<a name="l01012"></a><a class="code" href="classZmqMessage_1_1Outgoing.html">01012</a>   <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Outgoing.html">Outgoing</a> : <span class="keyword">public</span> <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>
-<a name="l01013"></a>01013   {
-<a name="l01014"></a>01014   <span class="keyword">private</span>:
-<a name="l01015"></a>01015 
-<a name="l01016"></a>01016     <span class="keywordtype">void</span>
-<a name="l01017"></a>01017     send_routing(
-<a name="l01018"></a>01018       <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>* routing) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
-<a name="l01019"></a>01019 
-<a name="l01020"></a>01020   <span class="keyword">public</span>:
-<a name="l01021"></a>01021 
-<a name="l01022"></a>01022     <span class="keyword">using</span> <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">Sink::iterator</a>;
-<a name="l01023"></a>01023 
-<a name="l01027"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#f1ce936290f84edb2a8c68aeddfa2cce">01027</a>     <span class="keyword">typedef</span> RoutingPolicy <a class="code" href="classZmqMessage_1_1Outgoing.html#f1ce936290f84edb2a8c68aeddfa2cce">RoutingPolicyType</a>;
-<a name="l01028"></a>01028 
-<a name="l01029"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">01029</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(zmq::socket_t&amp; <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>, <span class="keywordtype">unsigned</span> <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>) :
-<a name="l01030"></a>01030       <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>(dst, options)
-<a name="l01031"></a>01031     {
-<a name="l01032"></a>01032       send_routing(0);
-<a name="l01033"></a>01033     }
-<a name="l01034"></a>01034 
-<a name="l01035"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#666ce57093d96b85e3058499cc9aa3d6">01035</a>     <span class="keyword">explicit</span> <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(<a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a> out_opts) :
-<a name="l01036"></a>01036       <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>(out_opts.sock, out_opts.<a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>)
-<a name="l01037"></a>01037     {
-<a name="l01038"></a>01038       send_routing(0);
-<a name="l01039"></a>01039     }
-<a name="l01040"></a>01040 
-<a name="l01045"></a>01045     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> InRoutingPolicy&gt;
-<a name="l01046"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#aa553a06b6d8670618a1fc92619580da">01046</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(zmq::socket_t&amp; <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>,
-<a name="l01047"></a>01047       <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;InRoutingPolicy&gt;</a>&amp; <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>,
-<a name="l01048"></a>01048       <span class="keywordtype">unsigned</span> <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>) :
-<a name="l01049"></a>01049       <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(<a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>, <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>, &amp;<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>)
-<a name="l01050"></a>01050     {
-<a name="l01051"></a>01051       send_routing(<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>.get_routing());
-<a name="l01052"></a>01052     }
-<a name="l01053"></a>01053 
-<a name="l01058"></a>01058     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> InRoutingPolicy&gt;
-<a name="l01059"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#244ad191d421807cd90df972e2fa7735">01059</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(<a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a> out_opts,
-<a name="l01060"></a>01060       <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;InRoutingPolicy&gt;</a>&amp; <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>) :
-<a name="l01061"></a>01061       <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(out_opts.sock, out_opts.options, &amp;<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>)
-<a name="l01062"></a>01062     {
-<a name="l01063"></a>01063       send_routing(<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>.get_routing());
-<a name="l01064"></a>01064     }
-<a name="l01065"></a>01065 
-<a name="l01070"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#bbe128d1332d38178ee7448454543dce">01070</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(zmq::socket_t&amp; <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>,
-<a name="l01071"></a>01071       <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>&amp; <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>,
-<a name="l01072"></a>01072       <span class="keywordtype">unsigned</span> <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>) :
-<a name="l01073"></a>01073       <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(<a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>, <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>, &amp;<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>)
-<a name="l01074"></a>01074     {
-<a name="l01075"></a>01075       send_routing(0);
-<a name="l01076"></a>01076     }
-<a name="l01077"></a>01077 
-<a name="l01082"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#ef7db71d6ec9c831c026ba47ef6c4cc5">01082</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(<a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a> out_opts,
-<a name="l01083"></a>01083       <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>&amp; <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>) :
-<a name="l01084"></a>01084       <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(out_opts.sock, out_opts.options, &amp;<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>)
-<a name="l01085"></a>01085     {
-<a name="l01086"></a>01086       send_routing(0);
-<a name="l01087"></a>01087     }
-<a name="l01088"></a>01088   };
-<a name="l01089"></a>01089 }
-<a name="l01090"></a>01090 
-<a name="l01091"></a>01091 <span class="preprocessor">#endif </span><span class="comment">/* ZMQMESSAGE_HPP_ */</span>
-<a name="l01092"></a>01092 
-<a name="l01093"></a>01093 <span class="preprocessor">#include "<a class="code" href="ZmqMessageTemplateImpl_8hpp.html">zmqmessage/ZmqMessageTemplateImpl.hpp</a>"</span>
+<a name="l00940"></a>00940      <span class="keyword">inline</span>
+<a name="l00941"></a>00941      zmq::socket_t&amp;
+<a name="l00942"></a><a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">00942</a>      <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>()
+<a name="l00943"></a>00943      {
+<a name="l00944"></a>00944        <span class="keywordflow">return</span> dst_;
+<a name="l00945"></a>00945      }
+<a name="l00946"></a>00946 
+<a name="l00950"></a>00950      <span class="keywordtype">void</span>
+<a name="l00951"></a>00951      <a class="code" href="classZmqMessage_1_1Sink.html#152cab862a531c693ea01e5a5e1b00fc">flush</a>() throw(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l00952"></a>00952 
+<a name="l00953"></a>00953      <span class="keywordtype">void</span>
+<a name="l00954"></a><a class="code" href="classZmqMessage_1_1Sink.html#96d0a15e4d8becd71c5da88738ee7907">00954</a>      <a class="code" href="classZmqMessage_1_1Sink.html#96d0a15e4d8becd71c5da88738ee7907">set_binary</a>()
+<a name="l00955"></a>00955      {
+<a name="l00956"></a>00956        options_ |= <a class="code" href="structZmqMessage_1_1OutOptions.html#7e32e290737ff0f3183b00c172bb291a">OutOptions::BINARY_MODE</a>;
+<a name="l00957"></a>00957      }
+<a name="l00958"></a>00958 
+<a name="l00959"></a>00959      <span class="keywordtype">void</span>
+<a name="l00960"></a><a class="code" href="classZmqMessage_1_1Sink.html#b68e74750101c33aa6cbbb74dfbd4d96">00960</a>      <a class="code" href="classZmqMessage_1_1Sink.html#b68e74750101c33aa6cbbb74dfbd4d96">set_text</a>()
+<a name="l00961"></a>00961      {
+<a name="l00962"></a>00962        options_ &amp;= ~<a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a>::BINARY_MODE;
+<a name="l00963"></a>00963      }
+<a name="l00964"></a>00964 
+<a name="l00969"></a>00969      <span class="keywordtype">void</span>
+<a name="l00970"></a>00970      <a class="code" href="classZmqMessage_1_1Sink.html#a98e8b36bea100362faafb72f425a644">send_incoming_messages</a>(size_t idx_from = 0, size_t idx_to = UINT_MAX)
+<a name="l00971"></a>00971        throw(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l00972"></a>00972 
+<a name="l00977"></a>00977      <span class="keywordtype">void</span>
+<a name="l00978"></a>00978      <a class="code" href="classZmqMessage_1_1Sink.html#a98e8b36bea100362faafb72f425a644">send_incoming_messages</a>(<a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>&amp; multipart,
+<a name="l00979"></a>00979        <span class="keywordtype">bool</span> copy, size_t idx_from = 0, size_t idx_to = UINT_MAX)
+<a name="l00980"></a>00980        throw(ZmqErrorType);
+<a name="l00981"></a>00981 
+<a name="l00985"></a>00985      <span class="keywordtype">void</span>
+<a name="l00986"></a>00986      <a class="code" href="classZmqMessage_1_1Sink.html#4446da06ade4c29686f7795b5dd1f256">relay_from</a>(zmq::socket_t&amp; relay_src) throw(ZmqErrorType);
+<a name="l00987"></a>00987 
+<a name="l00993"></a>00993      template &lt;class OccupationAccumulator&gt;
+<a name="l00994"></a>00994      <span class="keywordtype">void</span>
+<a name="l00995"></a>00995      <a class="code" href="classZmqMessage_1_1Sink.html#4446da06ade4c29686f7795b5dd1f256">relay_from</a>(
+<a name="l00996"></a>00996        zmq::socket_t&amp; relay_src, OccupationAccumulator acc)
+<a name="l00997"></a>00997        throw (ZmqErrorType);
+<a name="l00998"></a>00998 
+<a name="l01003"></a>01003      template &lt;typename T&gt;
+<a name="l01004"></a>01004      <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
+<a name="l01005"></a>01005      operator&lt;&lt; (const T&amp; t) throw (ZmqErrorType);
+<a name="l01006"></a>01006 
+<a name="l01015"></a>01015      <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
+<a name="l01016"></a>01016      operator&lt;&lt; (zmq::message_t&amp; msg) throw (ZmqErrorType);
+<a name="l01017"></a>01017 
+<a name="l01023"></a>01023      inline <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
+<a name="l01024"></a><a class="code" href="classZmqMessage_1_1Sink.html#cca8dc4dc46145dfcafe896a6c3e86db">01024</a>      operator&lt;&lt; (MsgPtr msg) throw (ZmqErrorType)
+<a name="l01025"></a>01025      {
+<a name="l01026"></a>01026        send_owned(msg.get() ? msg.release() : <span class="keyword">new</span> zmq::message_t(0));
+<a name="l01027"></a>01027        <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l01028"></a>01028      }
+<a name="l01029"></a>01029 
+<a name="l01033"></a>01033      <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
+<a name="l01034"></a>01034      <a class="code" href="classZmqMessage_1_1Sink.html#719c8dc843ef3fd7f939c8203a7a48c0">operator&lt;&lt; </a>(<span class="keyword">const</span> <a class="code" href="structZmqMessage_1_1RawMessage.html">RawMessage</a>&amp; m) <span class="keywordflow">throw</span> (<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l01035"></a>01035 
+<a name="l01039"></a>01039      <span class="keyword">inline</span> <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;
+<a name="l01040"></a><a class="code" href="classZmqMessage_1_1Sink.html#8c04615fc01de06cfb905f9e75821f56">01040</a>      <a class="code" href="classZmqMessage_1_1Sink.html#719c8dc843ef3fd7f939c8203a7a48c0">operator&lt;&lt; </a>(<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp; (*f)(<a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>&amp;))
+<a name="l01041"></a>01041      {
+<a name="l01042"></a>01042        <span class="keywordflow">return</span> f(*<span class="keyword">this</span>);
+<a name="l01043"></a>01043      }
+<a name="l01044"></a>01044   };
+<a name="l01045"></a>01045 
+<a name="l01062"></a>01062   <span class="keyword">template</span> &lt;<span class="keyword">class</span> RoutingPolicy&gt;
+<a name="l01063"></a><a class="code" href="classZmqMessage_1_1Outgoing.html">01063</a>   <span class="keyword">class </span><a class="code" href="classZmqMessage_1_1Outgoing.html">Outgoing</a> : <span class="keyword">public</span> <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>
+<a name="l01064"></a>01064   {
+<a name="l01065"></a>01065   <span class="keyword">private</span>:
+<a name="l01066"></a>01066 
+<a name="l01067"></a>01067     <span class="keywordtype">void</span>
+<a name="l01068"></a>01068     send_routing(
+<a name="l01069"></a>01069       <a class="code" href="namespaceZmqMessage.html#3e8a62abe56d5a8ff7bb2e8921f9e704">MsgPtrVec</a>* routing) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>);
+<a name="l01070"></a>01070 
+<a name="l01071"></a>01071   <span class="keyword">public</span>:
+<a name="l01072"></a>01072 
+<a name="l01073"></a>01073     <span class="keyword">using</span> <a class="code" href="classZmqMessage_1_1Sink_1_1iterator.html">Sink::iterator</a>;
+<a name="l01074"></a>01074 
+<a name="l01078"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#f1ce936290f84edb2a8c68aeddfa2cce">01078</a>     <span class="keyword">typedef</span> RoutingPolicy <a class="code" href="classZmqMessage_1_1Outgoing.html#f1ce936290f84edb2a8c68aeddfa2cce">RoutingPolicyType</a>;
+<a name="l01079"></a>01079 
+<a name="l01080"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">01080</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(zmq::socket_t&amp; <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>, <span class="keywordtype">unsigned</span> <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>) :
+<a name="l01081"></a>01081       <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>(dst, options)
+<a name="l01082"></a>01082     {
+<a name="l01083"></a>01083       send_routing(0);
+<a name="l01084"></a>01084     }
+<a name="l01085"></a>01085 
+<a name="l01086"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#666ce57093d96b85e3058499cc9aa3d6">01086</a>     <span class="keyword">explicit</span> <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(<a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a> out_opts) :
+<a name="l01087"></a>01087       <a class="code" href="classZmqMessage_1_1Sink.html">Sink</a>(out_opts.sock, out_opts.<a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>)
+<a name="l01088"></a>01088     {
+<a name="l01089"></a>01089       send_routing(0);
+<a name="l01090"></a>01090     }
+<a name="l01091"></a>01091 
+<a name="l01096"></a>01096     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> InRoutingPolicy&gt;
+<a name="l01097"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#aa553a06b6d8670618a1fc92619580da">01097</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(zmq::socket_t&amp; <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>,
+<a name="l01098"></a>01098       <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;InRoutingPolicy&gt;</a>&amp; <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>,
+<a name="l01099"></a>01099       <span class="keywordtype">unsigned</span> <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>) :
+<a name="l01100"></a>01100       <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(<a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>, <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>, &amp;<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>)
+<a name="l01101"></a>01101     {
+<a name="l01102"></a>01102       send_routing(<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>.get_routing());
+<a name="l01103"></a>01103     }
+<a name="l01104"></a>01104 
+<a name="l01109"></a>01109     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> InRoutingPolicy&gt;
+<a name="l01110"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#244ad191d421807cd90df972e2fa7735">01110</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(<a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a> out_opts,
+<a name="l01111"></a>01111       <a class="code" href="classZmqMessage_1_1Incoming.html">Incoming&lt;InRoutingPolicy&gt;</a>&amp; <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>) :
+<a name="l01112"></a>01112       <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(out_opts.sock, out_opts.options, &amp;<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>)
+<a name="l01113"></a>01113     {
+<a name="l01114"></a>01114       send_routing(<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>.get_routing());
+<a name="l01115"></a>01115     }
+<a name="l01116"></a>01116 
+<a name="l01121"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#bbe128d1332d38178ee7448454543dce">01121</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(zmq::socket_t&amp; <a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>,
+<a name="l01122"></a>01122       <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>&amp; <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>,
+<a name="l01123"></a>01123       <span class="keywordtype">unsigned</span> <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>) :
+<a name="l01124"></a>01124       <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(<a class="code" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">dst</a>, <a class="code" href="classZmqMessage_1_1Sink.html#bfa0e0d0f4364d496b7a3dfa94fd7ce4">options</a>, &amp;<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>)
+<a name="l01125"></a>01125     {
+<a name="l01126"></a>01126       send_routing(0);
+<a name="l01127"></a>01127     }
+<a name="l01128"></a>01128 
+<a name="l01133"></a><a class="code" href="classZmqMessage_1_1Outgoing.html#ef7db71d6ec9c831c026ba47ef6c4cc5">01133</a>     <a class="code" href="classZmqMessage_1_1Outgoing.html#c2653be258531490363e273315ce0f8b">Outgoing</a>(<a class="code" href="structZmqMessage_1_1OutOptions.html">OutOptions</a> out_opts,
+<a name="l01134"></a>01134       <a class="code" href="classZmqMessage_1_1Multipart.html">Multipart</a>&amp; <a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>) <span class="keywordflow">throw</span>(<a class="code" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>) :
+<a name="l01135"></a>01135       <a class="code" href="classZmqMessage_1_1Sink.html#dab1906d93419823757c50f4079f79f6">Sink</a>(out_opts.sock, out_opts.options, &amp;<a class="code" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a>)
+<a name="l01136"></a>01136     {
+<a name="l01137"></a>01137       send_routing(0);
+<a name="l01138"></a>01138     }
+<a name="l01139"></a>01139   };
+<a name="l01140"></a>01140 }
+<a name="l01141"></a>01141 
+<a name="l01142"></a>01142 <span class="preprocessor">#endif </span><span class="comment">/* ZMQMESSAGE_HPP_ */</span>
+<a name="l01143"></a>01143 
+<a name="l01144"></a>01144 <span class="preprocessor">#include "<a class="code" href="ZmqMessageTemplateImpl_8hpp.html">zmqmessage/ZmqMessageTemplateImpl.hpp</a>"</span>
 </pre></div>
 <hr style="height: 3px;">
 

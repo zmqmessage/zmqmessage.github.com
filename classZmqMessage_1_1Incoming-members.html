@@ -36,7 +36,7 @@
   <span><a href="https://github.com/zmqmessage/zmqmessage/">Download</a></span>
 </td>
 
-<td align="right" class="zm_greynote">ZmqMessage 0.1 - 8 Sep 2011</td>
+<td align="right" class="zm_greynote">ZmqMessage 0.1 - 21 Oct 2011</td>
 
 </tr></table>
 
@@ -47,10 +47,12 @@
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#a42ff3e53b8f5977af8d8d630aaf0e2e">beginstr</a>() const </td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#9ea999dab5a6774779b96d0bd88682e6">check_has_part</a>(size_t n) const </td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#b359d2fec5e4756b68a274567948b0ee">check_is_terminal</a>() const </td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#3aec624a2a775f1e7245cf17707b4fdf">detach</a>()</td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#0deb622275fa9536e1457beabe5b0f8b">drop_tail</a>()</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#e887aae273f8a8df328aad4c3e088de8">end</a>() const </td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#3d4cb15df52541c7296911440e9eedc1">endstr</a>() const </td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#599981bdf6943f4afda550fd14b51625">fetch_tail</a>(std::vector&lt; char &gt; &amp;area, const char *delimiter=0)</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#abc7b26e36a933441d0bc6115b8d9c57">has_part</a>(size_t idx)</td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#8e91e1bc1aaeb5748139ddd54089805d">Incoming</a>(zmq::socket_t &amp;sock)</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td><code> [inline, explicit]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#a9249b5947628fa758209f61c00b4e02">is_terminal</a>() const </td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#7ce203e1e2b7df62d16f39a2ea75cfc0">iter_at</a>(size_t pos, bool binary_mode=false) const </td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [inline]</code></td></tr>
@@ -70,6 +72,7 @@
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#78ce291a3dda5bc4379350fd40ae1b7c">receive_all</a>(const size_t min_parts)</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#2e0c4e0cb1c90ab947d24eb29035bf23">receive_up_to</a>(size_t min_parts, const char *part_names[], size_t max_parts)</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#c8602b5af22555eff42cb8324436bcbc">release</a>(size_t i)</td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#184658613bd352af7ca57b0554a32609">release_ptr</a>(size_t i)</td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#ff768d14acbd77e439fa6bb57aa4793d">reserve</a>(size_t sz)</td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#a7597114723906810953da34dcaec200">RoutingPolicyType</a> typedef</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#a5cfa233db201795c3031951b4c55533">set_binary</a>()</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td><code> [inline]</code></td></tr>
@@ -77,6 +80,7 @@
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#3b4e16e2a44e55f6ce5bda8c5cafd28a">size</a>() const </td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#7437868a232f6f8deeeaf171b1df692e">Skip</a>(Incoming&lt; RoutingPolicy &gt; &amp;)</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td><code> [friend]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#3a599de5a85d9d0e91a6dabf25b7ff3f">src</a>()</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td><code> [inline]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Incoming.html#d584f2eb5b7eeb952c2f69b0c6e0e85c">validate</a>(const char *part_names[], size_t part_names_length, bool strict)</td><td><a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classZmqMessage_1_1Multipart.html#6165f98155ecea6ef169291a4a04c229">~Multipart</a>()</td><td><a class="el" href="classZmqMessage_1_1Multipart.html">ZmqMessage::Multipart</a></td><td><code> [inline, virtual]</code></td></tr>
 </table>
 <hr style="height: 3px;">

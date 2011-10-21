@@ -36,7 +36,7 @@
   <span><a href="https://github.com/zmqmessage/zmqmessage/">Download</a></span>
 </td>
 
-<td align="right" class="zm_greynote">ZmqMessage 0.1 - 8 Sep 2011</td>
+<td align="right" class="zm_greynote">ZmqMessage 0.1 - 21 Oct 2011</td>
 
 </tr></table>
 
@@ -60,6 +60,10 @@
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Multipart.html#6165f98155ecea6ef169291a4a04c229">~Multipart</a> ()</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classZmqMessage_1_1Multipart.html">Multipart</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Multipart.html#3aec624a2a775f1e7245cf17707b4fdf">detach</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Multipart.html#abc7b26e36a933441d0bc6115b8d9c57">has_part</a> (size_t idx)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Multipart.html#ff768d14acbd77e439fa6bb57aa4793d">reserve</a> (size_t sz)</td></tr>
 
 <tr><td class="memTemplParams" nowrap colspan="2">template&lt;typename T&gt; </td></tr>
@@ -80,6 +84,8 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">zmq::message_t &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Multipart.html#1c5df372e12916cba40435828b49c00f">operator[]</a> (size_t i)  throw (NoSuchPartError)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">zmq::message_t *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Multipart.html#c8602b5af22555eff42cb8324436bcbc">release</a> (size_t i)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">std::auto_ptr&lt; zmq::message_t &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Multipart.html#184658613bd352af7ca57b0554a32609">release_ptr</a> (size_t i)</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Multipart.html#9ea999dab5a6774779b96d0bd88682e6">check_has_part</a> (size_t n) const   throw (NoSuchPartError)</td></tr>
@@ -188,6 +194,25 @@ Obtain iterator that yields values of default string type.
 
 </div>
 </div><p>
+<a class="anchor" name="3aec624a2a775f1e7245cf17707b4fdf"></a><!-- doxytag: member="ZmqMessage::Multipart::detach" ref="3aec624a2a775f1e7245cf17707b4fdf" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classZmqMessage_1_1Multipart.html">Multipart</a> * ZmqMessage::Multipart::detach           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Detach heap-allocated <a class="el" href="classZmqMessage_1_1Multipart.html">Multipart</a> message owning all the parts of this multipart. After this operation, current object owns no message parts. 
+</div>
+</div><p>
 <a class="anchor" name="e887aae273f8a8df328aad4c3e088de8"></a><!-- doxytag: member="ZmqMessage::Multipart::end" ref="e887aae273f8a8df328aad4c3e088de8" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -226,6 +251,26 @@ End iterator that yields values of type T.
 
 <p>
 End iterator that yields values of default string type. 
+</div>
+</div><p>
+<a class="anchor" name="abc7b26e36a933441d0bc6115b8d9c57"></a><!-- doxytag: member="ZmqMessage::Multipart::has_part" ref="abc7b26e36a933441d0bc6115b8d9c57" args="(size_t idx)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ZmqMessage::Multipart::has_part           </td>
+          <td>(</td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>idx</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Does this multipart message has a part at given index (and owns it) 
 </div>
 </div><p>
 <a class="anchor" name="7ce203e1e2b7df62d16f39a2ea75cfc0"></a><!-- doxytag: member="ZmqMessage::Multipart::iter_at" ref="7ce203e1e2b7df62d16f39a2ea75cfc0" args="(size_t pos, bool binary_mode=false) const " -->
@@ -303,6 +348,26 @@ Get reference to zmq::message_t by index
 
 <p>
 Release (disown) message at specified index. <dl compact><dt><b>Returns:</b></dt><dd>0 if such message is not owned by <a class="el" href="classZmqMessage_1_1Multipart.html">Multipart</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="184658613bd352af7ca57b0554a32609"></a><!-- doxytag: member="ZmqMessage::Multipart::release_ptr" ref="184658613bd352af7ca57b0554a32609" args="(size_t i)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::auto_ptr&lt;zmq::message_t&gt; ZmqMessage::Multipart::release_ptr           </td>
+          <td>(</td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>i</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
 
 </div>
 </div><p>

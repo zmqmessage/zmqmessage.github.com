@@ -36,7 +36,7 @@
   <span><a href="https://github.com/zmqmessage/zmqmessage/">Download</a></span>
 </td>
 
-<td align="right" class="zm_greynote">ZmqMessage 0.1 - 8 Sep 2011</td>
+<td align="right" class="zm_greynote">ZmqMessage 0.1 - 21 Oct 2011</td>
 
 </tr></table>
 
@@ -59,6 +59,7 @@
     <li><a href="#index_e"><span>e</span></a></li>
     <li><a href="#index_f"><span>f</span></a></li>
     <li><a href="#index_g"><span>g</span></a></li>
+    <li><a href="#index_h"><span>h</span></a></li>
     <li><a href="#index_i"><span>i</span></a></li>
     <li><a href="#index_l"><span>l</span></a></li>
     <li><a href="#index_n"><span>n</span></a></li>
@@ -87,7 +88,7 @@
 <li>data()
 : <a class="el" href="classStringFace.html#20ff1acec41e6da3036a8274790c0134">StringFace</a>, <a class="el" href="structZmqMessage_1_1RawMessage.html#1232cd2fa1d68c7e434ceed7fc65f272">ZmqMessage::RawMessage</a><li>DefaultExceptionTemplate()
 : <a class="el" href="classZmqMessage_1_1DefaultExceptionTemplate.html#48bff0ce2fadbc68309e00e7ce6c941f">ZmqMessage::DefaultExceptionTemplate&lt; Tag &gt;</a><li>detach()
-: <a class="el" href="classZmqMessage_1_1Sink.html#59f9d277f528a97ad1eb2df45786b730">ZmqMessage::Sink</a><li>drop_tail()
+: <a class="el" href="classZmqMessage_1_1Sink.html#59f9d277f528a97ad1eb2df45786b730">ZmqMessage::Sink</a>, <a class="el" href="classZmqMessage_1_1Multipart.html#3aec624a2a775f1e7245cf17707b4fdf">ZmqMessage::Multipart</a><li>drop_tail()
 : <a class="el" href="classZmqMessage_1_1Incoming.html#0deb622275fa9536e1457beabe5b0f8b">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a><li>dst()
 : <a class="el" href="classZmqMessage_1_1Sink.html#3d5d89f24ba9731d31f46beea6d9f382">ZmqMessage::Sink</a></ul>
 <h3><a class="anchor" name="index_e">- e -</a></h3><ul>
@@ -101,6 +102,9 @@
 <h3><a class="anchor" name="index_g">- g -</a></h3><ul>
 <li>get_routing()
 : <a class="el" href="classZmqMessage_1_1XRouting.html#3d4f573fb2d70dabd2c088229b780186">ZmqMessage::XRouting</a>, <a class="el" href="classZmqMessage_1_1SimpleRouting.html#548e0da3ace11d1cb42b67097820623d">ZmqMessage::SimpleRouting</a></ul>
+<h3><a class="anchor" name="index_h">- h -</a></h3><ul>
+<li>has_part()
+: <a class="el" href="classZmqMessage_1_1Multipart.html#abc7b26e36a933441d0bc6115b8d9c57">ZmqMessage::Multipart</a></ul>
 <h3><a class="anchor" name="index_i">- i -</a></h3><ul>
 <li>Incoming()
 : <a class="el" href="classZmqMessage_1_1Incoming.html#8e91e1bc1aaeb5748139ddd54089805d">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a><li>incoming()
@@ -137,11 +141,12 @@
 : <a class="el" href="classZmqMessage_1_1XRouting.html#8d787b7fcf27f1b9def1469bcb958497">ZmqMessage::XRouting</a>, <a class="el" href="classZmqMessage_1_1SimpleRouting.html#25af6f15e5f29754a58979b18be4d072">ZmqMessage::SimpleRouting</a><li>receive_up_to()
 : <a class="el" href="classZmqMessage_1_1Incoming.html#2e0c4e0cb1c90ab947d24eb29035bf23">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a><li>relay_from()
 : <a class="el" href="classZmqMessage_1_1Sink.html#1ef6eee3938ecb86bc3cedb9297f8e4c">ZmqMessage::Sink</a><li>release()
-: <a class="el" href="classZmqMessage_1_1Multipart.html#c8602b5af22555eff42cb8324436bcbc">ZmqMessage::Multipart</a><li>reserve()
+: <a class="el" href="classZmqMessage_1_1Multipart.html#c8602b5af22555eff42cb8324436bcbc">ZmqMessage::Multipart</a><li>release_ptr()
+: <a class="el" href="classZmqMessage_1_1Multipart.html#184658613bd352af7ca57b0554a32609">ZmqMessage::Multipart</a><li>reserve()
 : <a class="el" href="classZmqMessage_1_1Multipart.html#ff768d14acbd77e439fa6bb57aa4793d">ZmqMessage::Multipart</a></ul>
 <h3><a class="anchor" name="index_s">- s -</a></h3><ul>
 <li>send_incoming_messages()
-: <a class="el" href="classZmqMessage_1_1Sink.html#5bab70db811eeb1357af64c5aa76ede1">ZmqMessage::Sink</a><li>send_one()
+: <a class="el" href="classZmqMessage_1_1Sink.html#7c1368c7295687ef33730d95f7e9cf5b">ZmqMessage::Sink</a><li>send_one()
 : <a class="el" href="classZmqMessage_1_1Sink.html#2b1a4e928ea2210835607e8365283a56">ZmqMessage::Sink</a><li>send_routing()
 : <a class="el" href="classZmqMessage_1_1Outgoing.html#596f212912b356527e69f6fed560546d">ZmqMessage::Outgoing&lt; RoutingPolicy &gt;</a><li>set_binary()
 : <a class="el" href="classZmqMessage_1_1Sink.html#96d0a15e4d8becd71c5da88738ee7907">ZmqMessage::Sink</a>, <a class="el" href="classZmqMessage_1_1Incoming.html#a5cfa233db201795c3031951b4c55533">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a><li>set_text()
@@ -151,7 +156,8 @@
 : <a class="el" href="classZmqMessage_1_1Incoming.html#3a599de5a85d9d0e91a6dabf25b7ff3f">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a><li>StringFace()
 : <a class="el" href="classStringFace.html#431a19eaa06e768db14f4040a9c7c1c1">StringFace</a></ul>
 <h3><a class="anchor" name="index_v">- v -</a></h3><ul>
-<li>value()
+<li>validate()
+: <a class="el" href="classZmqMessage_1_1Incoming.html#d584f2eb5b7eeb952c2f69b0c6e0e85c">ZmqMessage::Incoming&lt; RoutingPolicy &gt;</a><li>value()
 : <a class="el" href="structZmqMessage_1_1Private_1_1TypeCheck.html#4b4558be6fd9b6e49b3c1baef61dc159">ZmqMessage::Private::TypeCheck&lt; MessageFormatErrorT, NoSuchPartErrorT, ZmqErrorTypeT &gt;</a>, <a class="el" href="structZmqMessage_1_1Private_1_1IsRaw.html#bea1d345db5eda4c62c7ba7609d1c0ee">ZmqMessage::Private::IsRaw&lt; T &gt;</a>, <a class="el" href="structZmqMessage_1_1Private_1_1IsStr.html#54e78d28d252b207dcfcb8d56d0f37d0">ZmqMessage::Private::IsStr&lt; T &gt;</a></ul>
 <h3><a class="anchor" name="index_~">- ~ -</a></h3><ul>
 <li>~Multipart()

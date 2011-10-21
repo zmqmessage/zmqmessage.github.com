@@ -36,7 +36,7 @@
   <span><a href="https://github.com/zmqmessage/zmqmessage/">Download</a></span>
 </td>
 
-<td align="right" class="zm_greynote">ZmqMessage 0.1 - 8 Sep 2011</td>
+<td align="right" class="zm_greynote">ZmqMessage 0.1 - 21 Oct 2011</td>
 
 </tr></table>
 
@@ -68,6 +68,8 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Incoming.html#a9249b5947628fa758209f61c00b4e02">is_terminal</a> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Incoming.html#b359d2fec5e4756b68a274567948b0ee">check_is_terminal</a> () const   throw (MessageFormatError)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Incoming.html#d584f2eb5b7eeb952c2f69b0c6e0e85c">validate</a> (const char *part_names[], size_t part_names_length, bool strict)  throw (MessageFormatError)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classZmqMessage_1_1Incoming.html">Incoming</a>&lt; RoutingPolicy &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive</a> (size_t parts, const char *part_names[], size_t part_names_length, bool check_terminal)  throw (MessageFormatError, ZmqErrorType)</td></tr>
 
@@ -234,7 +236,7 @@ template&lt;class RoutingPolicy&gt; </div>
 <div class="memdoc">
 
 <p>
-Fetch all messages starting from tail message until there will be no more parts on socket. We assume that we have used THIS socket on <a class="el" href="classZmqMessage_1_1Incoming.html#73949e905ee75e4c46f40419a8c7a2b2">receive()</a> call. So the resulting data will be: { parts_[N-1] | message, ... } <dl compact><dt><b>Parameters:</b></dt><dd>
+Fetch all messages starting from tail message until there will be no more parts on socket. So the resulting data will be: { parts_[N-1] | message, ... } <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>area</em>&nbsp;</td><td>- result stored here </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>delimiter</em>&nbsp;</td><td>- null terminated string, inserted between parts </td></tr>
@@ -695,6 +697,50 @@ template&lt;class RoutingPolicy&gt; </div>
 
 <p>
 <dl compact><dt><b>Returns:</b></dt><dd>zmq socket to receive message parts from </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d584f2eb5b7eeb952c2f69b0c6e0e85c"></a><!-- doxytag: member="ZmqMessage::Incoming::validate" ref="d584f2eb5b7eeb952c2f69b0c6e0e85c" args="(const char *part_names[], size_t part_names_length, bool strict)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RoutingPolicy&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classZmqMessage_1_1Incoming.html">ZmqMessage::Incoming</a>&lt; RoutingPolicy &gt;::validate           </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>part_names</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>part_names_length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>strict</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%">  throw (<a class="el" href="classMessageFormatError.html">MessageFormatError</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Validate that message contains definite number of message parts. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>part_names</em>&nbsp;</td><td>array of parts names for error reporting and debug purposes </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>part_names_length</em>&nbsp;</td><td>length of part_names array </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>strict</em>&nbsp;</td><td>if true, message MUST contain exactly <code>part_names_length</code> parts. Otherwise it MUST contain at least <code>part_names_length</code> parts. </td></tr>
+  </table>
+</dl>
 
 </div>
 </div><p>

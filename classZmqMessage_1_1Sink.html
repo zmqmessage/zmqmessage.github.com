@@ -36,7 +36,7 @@
   <span><a href="https://github.com/zmqmessage/zmqmessage/">Download</a></span>
 </td>
 
-<td align="right" class="zm_greynote">ZmqMessage 0.1 - 8 Sep 2011</td>
+<td align="right" class="zm_greynote">ZmqMessage 0.1 - 21 Oct 2011</td>
 
 </tr></table>
 
@@ -58,7 +58,7 @@
 <a href="classZmqMessage_1_1Sink-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Sink.html#32e20f1d2405e1435c9bdc0e277c7644">~Sink</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Sink.html#32e20f1d2405e1435c9bdc0e277c7644">~Sink</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">const <a class="el" href="classZmqMessage_1_1Multipart.html">Multipart</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Sink.html#f99210f8d223bf6d0cfa4ca37fc3e51a">incoming</a> () const </td></tr>
 
@@ -76,7 +76,9 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Sink.html#b68e74750101c33aa6cbbb74dfbd4d96">set_text</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Sink.html#5bab70db811eeb1357af64c5aa76ede1">send_incoming_messages</a> (size_t idx_from=0)  throw (ZmqErrorType)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Sink.html#a98e8b36bea100362faafb72f425a644">send_incoming_messages</a> (size_t idx_from=0, size_t idx_to=UINT_MAX)  throw (ZmqErrorType)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Sink.html#7c1368c7295687ef33730d95f7e9cf5b">send_incoming_messages</a> (<a class="el" href="classZmqMessage_1_1Multipart.html">Multipart</a> &amp;multipart, bool copy, size_t idx_from=0, size_t idx_to=UINT_MAX)  throw (ZmqErrorType)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmqMessage_1_1Sink.html#4446da06ade4c29686f7795b5dd1f256">relay_from</a> (zmq::socket_t &amp;relay_src)  throw (ZmqErrorType)</td></tr>
 
@@ -156,7 +158,7 @@ After <a class="el" href="classZmqMessage_1_1Outgoing.html">Outgoing</a> message
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
+          <td width="100%"><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -456,7 +458,48 @@ Receive and send/enqueue pending messages from relay_src socket, counting sizes 
 Receive and send/enqueue pending messages from relay_src socket 
 </div>
 </div><p>
-<a class="anchor" name="5bab70db811eeb1357af64c5aa76ede1"></a><!-- doxytag: member="ZmqMessage::Sink::send_incoming_messages" ref="5bab70db811eeb1357af64c5aa76ede1" args="(size_t idx_from=0)" -->
+<a class="anchor" name="7c1368c7295687ef33730d95f7e9cf5b"></a><!-- doxytag: member="ZmqMessage::Sink::send_incoming_messages" ref="7c1368c7295687ef33730d95f7e9cf5b" args="(Multipart &amp;multipart, bool copy, size_t idx_from=0, size_t idx_to=UINT_MAX)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZmqMessage::Sink::send_incoming_messages           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classZmqMessage_1_1Multipart.html">Multipart</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>multipart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>copy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>idx_from</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>idx_to</em> = <code>UINT_MAX</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%">  throw (<a class="el" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Send all messages contained in given incoming starting from idx_from ending idx_to - 1 
+</div>
+</div><p>
+<a class="anchor" name="a98e8b36bea100362faafb72f425a644"></a><!-- doxytag: member="ZmqMessage::Sink::send_incoming_messages" ref="a98e8b36bea100362faafb72f425a644" args="(size_t idx_from=0, size_t idx_to=UINT_MAX)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -464,16 +507,25 @@ Receive and send/enqueue pending messages from relay_src socket
           <td class="memname">void ZmqMessage::Sink::send_incoming_messages           </td>
           <td>(</td>
           <td class="paramtype">size_t&nbsp;</td>
-          <td class="paramname"> <em>idx_from</em> = <code>0</code>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%">  throw (<a class="el" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)</td>
+          <td class="paramname"> <em>idx_from</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>idx_to</em> = <code>UINT_MAX</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%">  throw (<a class="el" href="namespaceZmqMessage.html#b6d56fe86e2309d7182d41d2e0f3c76a">ZmqErrorType</a>)</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Send all messages contained in <code>incoming_</code> starting from idx_from 
+Send all messages contained in <code>incoming_</code> starting from idx_from ending idx_to - 1 
 </div>
 </div><p>
 <a class="anchor" name="2b1a4e928ea2210835607e8365283a56"></a><!-- doxytag: member="ZmqMessage::Sink::send_one" ref="2b1a4e928ea2210835607e8365283a56" args="(zmq::message_t *msg, bool use_copy=false)" -->
